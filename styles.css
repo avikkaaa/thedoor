@@ -2258,3 +2258,162 @@ html.grayscale-mode .ai-copy p,
 html.grayscale-mode .final-cta p{
   color:#e2e2e2 !important;
 }
+
+
+/* ===== STRONG DOOR TYPE OVERRIDES — TYPE ALWAYS WINS ===== */
+#doorVisual.type-bedroom,
+#customDoorVisual.type-bedroom{
+  border-radius:2px !important;
+}
+
+#doorVisual.type-front,
+#customDoorVisual.type-front{
+  background:linear-gradient(145deg,#8a5a36,#5f3823) !important;
+  border:4px solid #402719 !important;
+}
+#doorVisual.type-front .door-panel-top,
+#customDoorVisual.type-front .door-panel-top{
+  top:20px !important;
+  height:105px !important;
+  border-radius:50% 50% 10px 10px !important;
+}
+#doorVisual.type-front .door-panel-bottom,
+#customDoorVisual.type-front .door-panel-bottom{
+  height:90px !important;
+}
+
+#doorVisual.type-office,
+#customDoorVisual.type-office{
+  background:linear-gradient(145deg,#c7d0d4,#7b858a) !important;
+  border:3px solid #4f585d !important;
+}
+#doorVisual.type-office .door-panel-top,
+#customDoorVisual.type-office .door-panel-top{
+  background:linear-gradient(145deg,rgba(235,247,250,.72),rgba(159,181,190,.32)) !important;
+  border:2px solid rgba(70,86,94,.38) !important;
+  height:125px !important;
+}
+#doorVisual.type-office .door-panel-bottom,
+#customDoorVisual.type-office .door-panel-bottom{
+  background:#667177 !important;
+  height:70px !important;
+}
+
+#doorVisual.type-bathroom,
+#customDoorVisual.type-bathroom{
+  background:linear-gradient(145deg,#f4f1eb,#c9c5be) !important;
+  border:3px solid #9e9992 !important;
+}
+#doorVisual.type-bathroom .door-panel-top,
+#customDoorVisual.type-bathroom .door-panel-top,
+#doorVisual.type-bathroom .door-panel-bottom,
+#customDoorVisual.type-bathroom .door-panel-bottom{
+  border-radius:999px !important;
+  border:2px solid rgba(110,110,110,.35) !important;
+}
+
+#doorVisual.type-vault,
+#customDoorVisual.type-vault{
+  background:linear-gradient(145deg,#777d81,#2e3235) !important;
+  border:7px solid #24282b !important;
+  border-radius:8px !important;
+}
+#doorVisual.type-vault .door-panel,
+#customDoorVisual.type-vault .door-panel{
+  opacity:.18 !important;
+}
+#doorVisual.type-vault:before,
+#customDoorVisual.type-vault:before{
+  content:"" !important;
+  position:absolute !important;
+  width:78px !important;
+  height:78px !important;
+  border:8px solid #bbbfc1 !important;
+  border-radius:50% !important;
+  left:50% !important;
+  top:50% !important;
+  transform:translate(-50%,-50%) !important;
+  box-shadow:inset 0 0 0 5px #5d6265,0 0 0 3px #25292b !important;
+  z-index:4 !important;
+}
+#doorVisual.type-vault .door-handle,
+#customDoorVisual.type-vault .door-handle{
+  display:none !important;
+}
+
+#doorVisual.type-secret,
+#customDoorVisual.type-secret{
+  background:
+    linear-gradient(rgba(24,16,10,.20),rgba(24,16,10,.20)),
+    repeating-linear-gradient(90deg,#7a5537 0 17px,#5b3a26 17px 22px) !important;
+  border:3px solid #3f281b !important;
+}
+#doorVisual.type-secret .door-panel,
+#customDoorVisual.type-secret .door-panel{
+  opacity:.12 !important;
+}
+#doorVisual.type-secret .door-handle,
+#customDoorVisual.type-secret .door-handle{
+  opacity:.45 !important;
+}
+
+#doorVisual.type-spaceship,
+#customDoorVisual.type-spaceship{
+  background:linear-gradient(145deg,#e5eaed,#7a858c 45%,#c5ccd0) !important;
+  border:4px solid #475158 !important;
+  border-radius:18px 18px 6px 6px !important;
+  clip-path:polygon(12% 0,88% 0,100% 8%,100% 92%,88% 100%,12% 100%,0 92%,0 8%) !important;
+}
+#doorVisual.type-spaceship .door-panel-top,
+#customDoorVisual.type-spaceship .door-panel-top{
+  height:82px !important;
+  border-radius:30px !important;
+  background:rgba(38,56,66,.22) !important;
+}
+#doorVisual.type-spaceship .door-panel-bottom,
+#customDoorVisual.type-spaceship .door-panel-bottom{
+  height:62px !important;
+  background:rgba(38,56,66,.20) !important;
+}
+
+#doorVisual.type-medieval,
+#customDoorVisual.type-medieval{
+  background:
+    linear-gradient(90deg,rgba(255,255,255,.04),rgba(0,0,0,.16)),
+    repeating-linear-gradient(90deg,#774927 0 18px,#543018 18px 23px) !important;
+  border:6px solid #382214 !important;
+  border-radius:44% 44% 3px 3px / 16% 16% 3px 3px !important;
+  box-shadow:inset 0 0 0 3px rgba(0,0,0,.18) !important;
+}
+#doorVisual.type-medieval:before,
+#customDoorVisual.type-medieval:before{
+  content:"" !important;
+  position:absolute !important;
+  left:8px !important;
+  right:8px !important;
+  top:42px !important;
+  height:10px !important;
+  background:#24201d !important;
+  box-shadow:0 150px 0 #24201d !important;
+  z-index:4 !important;
+}
+#doorVisual.type-medieval .door-panel,
+#customDoorVisual.type-medieval .door-panel{
+  opacity:0 !important;
+}
+#doorVisual.type-medieval .door-handle,
+#customDoorVisual.type-medieval .door-handle{
+  display:block !important;
+  width:24px !important;
+  height:24px !important;
+  border:5px solid #24201d !important;
+  background:transparent !important;
+  border-radius:50% !important;
+  box-shadow:none !important;
+}
+
+/* grayscale still shows the shape/detail differences, just with zero color */
+html.grayscale-mode #doorVisual,
+html.grayscale-mode #customDoorVisual{
+  filter:grayscale(1) saturate(0) !important;
+}
