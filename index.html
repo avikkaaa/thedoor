@@ -56,7 +56,7 @@
         <div class="console-head">
           <div>
             <span class="label">PRIMARY DOOR</span>
-            <h2>Bedroom Door</h2>
+            <h2 id="doorName">Bedroom Door</h2>
           </div>
           <div class="status-pill"><span class="dot"></span><span id="statusText">CLOSED · LOCKED</span></div>
         </div>
@@ -192,6 +192,35 @@
         </div>
 
         <div class="config-panel">
+        <div class="config-block door-type-block">
+          <div class="config-title"><span>DOOR TYPE</span><strong id="doorTypeValue">BEDROOM DOOR</strong></div>
+          <div class="door-type-grid" id="doorTypeGrid">
+            <button class="door-type-card active" data-door-type="Bedroom Door" data-door-class="type-bedroom">
+              <span>01</span><strong>Bedroom</strong><small>Quietly existing since forever.</small>
+            </button>
+            <button class="door-type-card" data-door-type="Front Door" data-door-class="type-front">
+              <span>02</span><strong>Front Door</strong><small>Main-character entrance energy.</small>
+            </button>
+            <button class="door-type-card" data-door-type="Office Door" data-door-class="type-office">
+              <span>03</span><strong>Office Door</strong><small>Looks productive. Isn't.</small>
+            </button>
+            <button class="door-type-card" data-door-type="Bathroom Door" data-door-class="type-bathroom">
+              <span>04</span><strong>Bathroom</strong><small>Privacy, professionally managed.</small>
+            </button>
+            <button class="door-type-card" data-door-type="Vault Door" data-door-class="type-vault">
+              <span>05</span><strong>Vault Door</strong><small>Protecting absolutely nothing.</small>
+            </button>
+            <button class="door-type-card" data-door-type="Secret Door" data-door-class="type-secret">
+              <span>06</span><strong>Secret Door</strong><small>Very subtle. Labelled “secret”.</small>
+            </button>
+            <button class="door-type-card" data-door-type="Spaceship Door" data-door-class="type-spaceship">
+              <span>07</span><strong>Spaceship</strong><small>Airlock vibes, zero space travel.</small>
+            </button>
+            <button class="door-type-card" data-door-type="Medieval Door" data-door-class="type-medieval">
+              <span>08</span><strong>Medieval</strong><small>Historically overqualified.</small>
+            </button>
+          </div>
+        </div>
         <div class="config-block">
           <div class="config-title"><span>MATERIAL</span><strong id="materialValue">WOOD</strong></div>
           <div class="chips" data-group="material">
