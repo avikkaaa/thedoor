@@ -1,4 +1,4 @@
-# DOOR™
+# DOOR
 
 **Finally, a smarter way to use a door.**
 
