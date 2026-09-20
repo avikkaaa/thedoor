@@ -324,6 +324,37 @@ document.addEventListener('DOMContentLoaded', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 
+
+  const doorTypeClasses = [
+    'type-bedroom','type-front','type-office','type-bathroom',
+    'type-vault','type-secret','type-spaceship','type-medieval'
+  ];
+
+  document.querySelectorAll('#doorTypeGrid .door-type-card').forEach((card) => {
+    card.addEventListener('click', () => {
+      const label = card.dataset.doorType || 'Door';
+      const doorClass = card.dataset.doorClass || 'type-bedroom';
+
+      document.querySelectorAll('#doorTypeGrid .door-type-card').forEach((item) => item.classList.remove('active'));
+      card.classList.add('active');
+
+      const typeValue = $('doorTypeValue');
+      const doorName = $('doorName');
+      if (typeValue) typeValue.textContent = label.toUpperCase();
+      if (doorName) doorName.textContent = label;
+
+      door.classList.remove(...doorTypeClasses);
+      door.classList.add(doorClass);
+
+      if (customDoor) {
+        customDoor.classList.remove(...doorTypeClasses);
+        customDoor.classList.add(doorClass);
+      }
+
+      showToast(label + ' selected. Door bureaucracy updated successfully.');
+    });
+  });
+
   const materialClasses = [
     'material-wood','material-glass','material-metal','material-marble','material-futuristic','material-expensive'
   ];
@@ -587,8 +618,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  door.classList.add('material-wood','handle-modern');
-  if (customDoor) customDoor.classList.add('material-wood','handle-modern');
+  door.classList.add('material-wood','handle-modern','type-bedroom');
+  if (customDoor) customDoor.classList.add('material-wood','handle-modern','type-bedroom');
   render();
   console.info('DOOR™ interface initialized successfully.');
 });
