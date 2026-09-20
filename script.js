@@ -2,6 +2,7 @@ const $ = (id) => document.getElementById(id);
 
 document.addEventListener('DOMContentLoaded', () => {
   const door = $('doorVisual');
+  const customDoor = $('customDoorVisual');
   const statusText = $('statusText');
   const note = $('systemNote');
   const toast = $('toast');
@@ -105,6 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (groupName === 'material') {
       door.classList.remove(...materialClasses);
+      if (customDoor) customDoor.classList.remove(...materialClasses);
       const map = {
         wood: 'material-wood',
         glass: 'material-glass',
@@ -114,11 +116,15 @@ document.addEventListener('DOMContentLoaded', () => {
         'suspiciously expensive': 'material-expensive'
       };
       door.classList.add(map[normalized] || 'material-wood');
+      if (customDoor) customDoor.classList.add(map[normalized] || 'material-wood');
+      const previewMaterial = $('previewMaterial');
+      if (previewMaterial) previewMaterial.textContent = value.toUpperCase();
       note.textContent = `${value} material applied. Door prestige has increased unnecessarily.`;
     }
 
     if (groupName === 'handle') {
       door.classList.remove(...handleClasses);
+      if (customDoor) customDoor.classList.remove(...handleClasses);
       const map = {
         'round knob': 'handle-round',
         'modern handle': 'handle-modern',
@@ -127,6 +133,9 @@ document.addEventListener('DOMContentLoaded', () => {
         'unnecessary handle': 'handle-unnecessary'
       };
       door.classList.add(map[normalized] || 'handle-modern');
+      if (customDoor) customDoor.classList.add(map[normalized] || 'handle-modern');
+      const previewHandle = $('previewHandle');
+      if (previewHandle) previewHandle.textContent = value.replace(' handle','').toUpperCase();
       note.textContent = `${value} installed. Ergonomic impact: mostly emotional.`;
     }
 
@@ -171,11 +180,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const duration = 1.6 - (value / 100) * 1.25;
       door.style.setProperty('--door-speed', `${duration.toFixed(2)}s`);
+      if (customDoor) customDoor.style.setProperty('--door-speed', `${duration.toFixed(2)}s`);
+      const previewSpeed = $('previewSpeed');
+      if (previewSpeed) previewSpeed.textContent = `${value}%`;
     };
 
     speed.addEventListener('input', syncSpeed);
     syncSpeed();
   }
+
+  bind('previewOpen', () => {
+    if (customDoor) customDoor.classList.add('open');
+  });
+
+  bind('previewClose', () => {
+    if (customDoor) customDoor.classList.remove('open');
+  });
 
   bind('saveConfig', () => {
     showToast('Perfect door configuration saved. Humanity may proceed.');
@@ -223,6 +243,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   door.classList.add('material-wood','handle-modern');
+  if (customDoor) customDoor.classList.add('material-wood','handle-modern');
   render();
   console.info('DOOR™ interface initialized successfully.');
 });
