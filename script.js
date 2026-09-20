@@ -107,42 +107,141 @@ document.addEventListener('DOMContentLoaded', () => {
     osc.stop(now + duration + .02);
   };
 
-  const playDoorSound = (action) => {
+  const getCurrentMaterial = () => {
+    if (door.classList.contains('material-glass')) return 'glass';
+    if (door.classList.contains('material-metal')) return 'metal';
+    if (door.classList.contains('material-marble')) return 'marble';
+    if (door.classList.contains('material-futuristic')) return 'futuristic';
+    if (door.classList.contains('material-expensive')) return 'expensive';
+    return 'wood';
+  };
+
+  const playDoorSound = (action, material = getCurrentMaterial()) => {
     const ctx = getAudioContext();
     if (ctx && ctx.state === 'suspended') ctx.resume();
 
-    if (action === 'open') {
-      // Soft latch release + wood/hinge creak
-      playTone({ start: 190, end: 145, duration: .045, type: 'square', gain: .012 });
-      playNoise({ duration: .42, gain: .028, lowpass: 900, highpass: 90, delay: .035 });
-      playTone({ start: 115, end: 72, duration: .34, type: 'sawtooth', gain: .016, delay: .05 });
-      playTone({ start: 410, end: 330, duration: .08, type: 'triangle', gain: .008, delay: .11 });
-    }
+    const soundMap = {
+      wood: {
+        open: () => {
+          playTone({ start:190,end:145,duration:.045,type:'square',gain:.012 });
+          playNoise({ duration:.42,gain:.028,lowpass:900,highpass:90,delay:.035 });
+          playTone({ start:115,end:72,duration:.34,type:'sawtooth',gain:.016,delay:.05 });
+        },
+        close: () => {
+          playNoise({ duration:.22,gain:.022,lowpass:1000,highpass:80 });
+          playTone({ start:105,end:64,duration:.15,type:'sawtooth',gain:.018,delay:.015 });
+          playTone({ start:72,end:45,duration:.09,type:'triangle',gain:.05,delay:.16 });
+        },
+        lock: () => {
+          playTone({ start:880,end:620,duration:.035,type:'square',gain:.018 });
+          playTone({ start:540,end:430,duration:.055,type:'triangle',gain:.022,delay:.05 });
+        },
+        unlock: () => {
+          playTone({ start:300,end:410,duration:.05,type:'square',gain:.012 });
+          playTone({ start:520,end:760,duration:.045,type:'triangle',gain:.019,delay:.055 });
+        }
+      },
+      glass: {
+        open: () => {
+          playTone({ start:420,end:300,duration:.04,type:'triangle',gain:.01 });
+          playNoise({ duration:.14,gain:.008,lowpass:2800,highpass:500,delay:.02 });
+          playTone({ start:760,end:580,duration:.12,type:'sine',gain:.01,delay:.04 });
+        },
+        close: () => {
+          playNoise({ duration:.08,gain:.008,lowpass:2400,highpass:450 });
+          playTone({ start:700,end:500,duration:.05,type:'sine',gain:.008,delay:.11 });
+        },
+        lock: () => {
+          playTone({ start:980,end:760,duration:.03,type:'triangle',gain:.014 });
+          playTone({ start:620,end:500,duration:.04,type:'square',gain:.014,delay:.05 });
+        },
+        unlock: () => {
+          playTone({ start:460,end:620,duration:.04,type:'triangle',gain:.012 });
+          playTone({ start:620,end:880,duration:.04,type:'square',gain:.013,delay:.05 });
+        }
+      },
+      metal: {
+        open: () => {
+          playTone({ start:260,end:180,duration:.05,type:'square',gain:.014 });
+          playNoise({ duration:.24,gain:.018,lowpass:1800,highpass:220,delay:.03 });
+          playTone({ start:520,end:350,duration:.12,type:'triangle',gain:.016,delay:.04 });
+        },
+        close: () => {
+          playNoise({ duration:.14,gain:.014,lowpass:2200,highpass:260 });
+          playTone({ start:680,end:430,duration:.05,type:'square',gain:.016,delay:.12 });
+          playTone({ start:110,end:68,duration:.08,type:'triangle',gain:.026,delay:.15 });
+        },
+        lock: () => {
+          playTone({ start:1180,end:820,duration:.03,type:'square',gain:.02 });
+          playTone({ start:700,end:500,duration:.045,type:'triangle',gain:.022,delay:.045 });
+        },
+        unlock: () => {
+          playTone({ start:380,end:560,duration:.045,type:'square',gain:.014 });
+          playTone({ start:700,end:960,duration:.04,type:'triangle',gain:.018,delay:.045 });
+        }
+      },
+      marble: {
+        open: () => {
+          playTone({ start:120,end:86,duration:.05,type:'square',gain:.014 });
+          playNoise({ duration:.28,gain:.014,lowpass:700,highpass:50,delay:.03 });
+          playTone({ start:92,end:60,duration:.28,type:'triangle',gain:.018,delay:.05 });
+        },
+        close: () => {
+          playNoise({ duration:.10,gain:.01,lowpass:850,highpass:50 });
+          playTone({ start:90,end:52,duration:.14,type:'triangle',gain:.042,delay:.05 });
+        },
+        lock: () => {
+          playTone({ start:520,end:380,duration:.05,type:'square',gain:.016 });
+          playTone({ start:260,end:180,duration:.06,type:'triangle',gain:.014,delay:.06 });
+        },
+        unlock: () => {
+          playTone({ start:240,end:330,duration:.05,type:'square',gain:.011 });
+          playTone({ start:330,end:460,duration:.05,type:'triangle',gain:.012,delay:.06 });
+        }
+      },
+      futuristic: {
+        open: () => {
+          playTone({ start:520,end:700,duration:.04,type:'sine',gain:.01 });
+          playTone({ start:180,end:110,duration:.16,type:'triangle',gain:.01,delay:.025 });
+          playNoise({ duration:.16,gain:.01,lowpass:2200,highpass:240,delay:.04 });
+        },
+        close: () => {
+          playTone({ start:760,end:540,duration:.05,type:'sine',gain:.01 });
+          playNoise({ duration:.10,gain:.008,lowpass:1800,highpass:220,delay:.05 });
+          playTone({ start:240,end:130,duration:.09,type:'triangle',gain:.014,delay:.08 });
+        },
+        lock: () => {
+          playTone({ start:640,end:840,duration:.03,type:'sine',gain:.01 });
+          playTone({ start:920,end:620,duration:.04,type:'square',gain:.016,delay:.04 });
+        },
+        unlock: () => {
+          playTone({ start:460,end:700,duration:.03,type:'sine',gain:.01 });
+          playTone({ start:700,end:920,duration:.04,type:'square',gain:.015,delay:.04 });
+        }
+      },
+      expensive: {
+        open: () => {
+          playTone({ start:240,end:190,duration:.04,type:'triangle',gain:.01 });
+          playNoise({ duration:.18,gain:.01,lowpass:1400,highpass:120,delay:.03 });
+          playTone({ start:150,end:110,duration:.18,type:'triangle',gain:.012,delay:.05 });
+        },
+        close: () => {
+          playNoise({ duration:.08,gain:.008,lowpass:1200,highpass:90 });
+          playTone({ start:150,end:88,duration:.11,type:'triangle',gain:.016,delay:.05 });
+        },
+        lock: () => {
+          playTone({ start:760,end:560,duration:.035,type:'triangle',gain:.014 });
+          playTone({ start:420,end:320,duration:.05,type:'square',gain:.014,delay:.05 });
+        },
+        unlock: () => {
+          playTone({ start:360,end:520,duration:.04,type:'triangle',gain:.011 });
+          playTone({ start:520,end:720,duration:.04,type:'square',gain:.012,delay:.05 });
+        }
+      }
+    };
 
-    if (action === 'close') {
-      // Closing movement + latch catch + body thud
-      playNoise({ duration: .22, gain: .022, lowpass: 1000, highpass: 80 });
-      playTone({ start: 105, end: 64, duration: .15, type: 'sawtooth', gain: .018, delay: .015 });
-      playTone({ start: 72, end: 45, duration: .09, type: 'triangle', gain: .05, delay: .16 });
-      playTone({ start: 520, end: 360, duration: .055, type: 'square', gain: .014, delay: .18 });
-      playNoise({ duration: .07, gain: .018, lowpass: 650, highpass: 40, delay: .155 });
-    }
-
-    if (action === 'lock') {
-      // Two-stage metallic deadbolt click
-      playTone({ start: 880, end: 620, duration: .035, type: 'square', gain: .018 });
-      playTone({ start: 540, end: 430, duration: .055, type: 'triangle', gain: .022, delay: .05 });
-      playNoise({ duration: .055, gain: .012, lowpass: 2200, highpass: 500, delay: .045 });
-      playTone({ start: 300, end: 250, duration: .06, type: 'square', gain: .012, delay: .095 });
-    }
-
-    if (action === 'unlock') {
-      // Reverse metallic action
-      playTone({ start: 300, end: 410, duration: .05, type: 'square', gain: .012 });
-      playNoise({ duration: .05, gain: .01, lowpass: 2400, highpass: 600, delay: .035 });
-      playTone({ start: 520, end: 760, duration: .045, type: 'triangle', gain: .019, delay: .055 });
-      playTone({ start: 760, end: 920, duration: .03, type: 'square', gain: .013, delay: .1 });
-    }
+    const set = soundMap[material] || soundMap.wood;
+    if (set[action]) set[action]();
   };
 
   const showToast = (message) => {
@@ -178,14 +277,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     note.textContent = 'Door opened successfully. Civilization continues.';
-    playDoorSound('open');
+    playDoorSound('open', getCurrentMaterial());
     render();
   });
 
   bind('closeBtn', () => {
     isOpen = false;
     note.textContent = 'Door closed. A highly complex operation is now complete.';
-    playDoorSound('close');
+    playDoorSound('close', getCurrentMaterial());
     showToast('Your door is closed again.');
     render();
   });
@@ -200,14 +299,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     isLocked = true;
     note.textContent = 'Security posture upgraded: door closed and locked.';
-    playDoorSound('lock');
+    playDoorSound('lock', getCurrentMaterial());
     render();
   });
 
   bind('unlockBtn', () => {
     isLocked = false;
     note.textContent = 'Door unlocked. Access to the other side is now technically possible.';
-    playDoorSound('unlock');
+    playDoorSound('unlock', getCurrentMaterial());
     showToast('Door unlocked. Revolutionary.');
     render();
   });
@@ -219,7 +318,7 @@ document.addEventListener('DOMContentLoaded', () => {
       count += 1;
       openCount.textContent = String(count);
     }
-    playDoorSound('open');
+    playDoorSound('open', getCurrentMaterial());
     render();
     showToast('You opened the door. This is what the entire product was for.');
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -377,12 +476,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   bind('previewOpen', () => {
     if (customDoor) customDoor.classList.add('open');
-    playDoorSound('open');
+    playDoorSound('open', getCurrentMaterial());
   });
 
   bind('previewClose', () => {
     if (customDoor) customDoor.classList.remove('open');
-    playDoorSound('close');
+    playDoorSound('close', getCurrentMaterial());
   });
 
   bind('saveConfig', () => {
