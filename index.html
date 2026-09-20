@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0b0b0c" />
+  <title>DOOR™ — Finally, a smarter way to use a door.</title>
+  <meta name="description" content="The world's most unnecessarily advanced door management platform." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div class="noise"></div>
+  <header class="topbar">
+    <a class="brand" href="#home">
+      <span class="brand-mark"><span class="mini-door"></span></span>
+      <span>DOOR<sup>™</sup></span>
+    </a>
+    <nav class="nav">
+      <a href="#analytics">Analytics</a>
+      <a href="#customize">Customize</a>
+      <a href="#emergency">Emergency</a>
+      <a href="#achievements">Achievements</a>
+    </nav>
+    <button class="icon-button" id="themeButton" aria-label="Toggle interface mode">◐</button>
+  </header>
+
+  <main>
+    <section id="home" class="hero section">
+      <div class="hero-copy">
+        <span class="eyebrow">DOOR OS 4.2 · SYSTEM NOMINAL</span>
+        <h1>Finally, a smarter way<br>to use a <em>door.</em></h1>
+        <p class="hero-sub">A precision-engineered ecosystem for opening, closing, locking and — when absolutely necessary — unlocking your door.</p>
+        <div class="hero-badges">
+          <span>Hinge latency 12ms</span>
+          <span>Door uptime 99.98%</span>
+          <span>Zero meaningful problems solved</span>
+        </div>
+      </div>
+
+      <div class="door-console">
+        <div class="console-head">
+          <div>
+            <span class="label">PRIMARY DOOR</span>
+            <h2>Bedroom Door</h2>
+          </div>
+          <div class="status-pill"><span class="dot"></span><span id="statusText">CLOSED · LOCKED</span></div>
+        </div>
+
+        <div class="door-stage">
+          <div class="scan-line"></div>
+          <div class="door-frame">
+            <div class="door" id="doorVisual">
+              <div class="door-panel door-panel-top"></div>
+              <div class="door-panel door-panel-bottom"></div>
+              <div class="door-handle"></div>
+            </div>
+          </div>
+          <div class="door-shadow"></div>
+        </div>
+
+        <div class="door-readout">
+          <div><span>DOOR HEALTH</span><strong>97%</strong></div>
+          <div><span>HINGE STATUS</span><strong>OPTIMAL</strong></div>
+          <div><span>HANDLE LATENCY</span><strong>0.12s</strong></div>
+        </div>
+
+        <div class="control-grid">
+          <button class="control primary" id="openBtn"><span>↗</span>OPEN</button>
+          <button class="control" id="closeBtn"><span>↙</span>CLOSE</button>
+          <button class="control" id="lockBtn"><span>⌁</span>LOCK</button>
+          <button class="control" id="unlockBtn"><span>⌁</span>UNLOCK</button>
+        </div>
+        <p class="system-note" id="systemNote">Door has been closed for 02:14:37. Everything is under control.</p>
+      </div>
+    </section>
+
+    <section class="marquee-strip">
+      <div class="marquee-track">
+        <span>DOOR INTELLIGENCE</span><i>•</i><span>ABSURDLY PRECISE</span><i>•</i><span>ENTERPRISE-GRADE OPENING</span><i>•</i><span>HINGE OBSERVABILITY</span><i>•</i><span>DOOR INTELLIGENCE</span><i>•</i><span>ABSURDLY PRECISE</span><i>•</i><span>ENTERPRISE-GRADE OPENING</span>
+      </div>
+    </section>
+
+    <section id="analytics" class="section analytics-section">
+      <div class="section-heading">
+        <span class="eyebrow">01 · DOOR ANALYTICS</span>
+        <h2>Know your door.<br><span>Far more than necessary.</span></h2>
+      </div>
+      <div class="stats-grid">
+        <article class="stat-card feature-stat">
+          <div class="card-top"><span>OPENINGS TODAY</span><span class="trend">+23%</span></div>
+          <div class="big-stat" id="openCount">17</div>
+          <div class="bar-chart" aria-hidden="true">
+            <span style="height:18%"></span><span style="height:32%"></span><span style="height:26%"></span><span style="height:46%"></span><span style="height:38%"></span><span style="height:62%"></span><span style="height:54%"></span><span style="height:78%"></span><span style="height:69%"></span><span style="height:90%"></span><span style="height:72%"></span><span style="height:82%"></span>
+          </div>
+          <p>Your door has demonstrated unusually strong commitment to opening today.</p>
+        </article>
+        <article class="stat-card">
+          <div class="card-top"><span>AVG. OPEN DURATION</span><span>LIVE</span></div>
+          <div class="metric">8.4<span>s</span></div>
+          <p>0.3s faster than yesterday. Incredible progress.</p>
+        </article>
+        <article class="stat-card">
+          <div class="card-top"><span>DOOR EFFICIENCY</span><span>Q3</span></div>
+          <div class="radial"><div><strong>94</strong><small>%</small></div></div>
+          <p>Top 7% of all doors we made up.</p>
+        </article>
+        <article class="stat-card">
+          <div class="card-top"><span>MOST ACTIVE HOUR</span><span>LOCAL</span></div>
+          <div class="metric">7:00<span>PM</span></div>
+          <p>Prime door hours. Historically intense.</p>
+        </article>
+      </div>
+
+      <div class="performance-panel">
+        <div class="performance-copy">
+          <span class="label">DOOR PERFORMANCE INDEX</span>
+          <div class="performance-score">98.1</div>
+          <p>Calculated using 47 proprietary metrics, 43 of which should not exist.</p>
+        </div>
+        <div class="performance-list">
+          <div><span>Opening efficiency</span><strong>96.7%</strong><i style="--w:96.7%"></i></div>
+          <div><span>Hinge responsiveness</span><strong>99.2%</strong><i style="--w:99.2%"></i></div>
+          <div><span>Closing consistency</span><strong>94.2%</strong><i style="--w:94.2%"></i></div>
+          <div><span>Overall door-ness</span><strong>100%</strong><i style="--w:100%"></i></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="customize" class="section split-section">
+      <div class="section-heading sticky-heading">
+        <span class="eyebrow">02 · DOOR STUDIO</span>
+        <h2>Your door.<br><span>Your unnecessary rules.</span></h2>
+        <p>Configure a digital door with a level of precision previously reserved for spacecraft and espresso machines.</p>
+      </div>
+
+      <div class="config-panel">
+        <div class="config-block">
+          <div class="config-title"><span>MATERIAL</span><strong id="materialValue">WOOD</strong></div>
+          <div class="chips" data-group="material">
+            <button class="chip active">Wood</button><button class="chip">Glass</button><button class="chip">Metal</button><button class="chip">Marble</button><button class="chip">Futuristic</button><button class="chip">Suspiciously expensive</button>
+          </div>
+        </div>
+        <div class="config-block">
+          <div class="config-title"><span>HANDLE</span><strong id="handleValue">MODERN HANDLE</strong></div>
+          <div class="chips" data-group="handle">
+            <button class="chip">Round knob</button><button class="chip active">Modern handle</button><button class="chip">Gold handle</button><button class="chip">Giant handle</button><button class="chip">Unnecessary handle</button>
+          </div>
+        </div>
+        <div class="config-block">
+          <div class="config-title"><span>DOOR SOUND</span><strong id="soundValue">SOFT CLICK</strong></div>
+          <div class="chips" data-group="sound">
+            <button class="chip">Classic creak</button><button class="chip active">Soft click</button><button class="chip">Heavy THUD</button><button class="chip">Sci-fi</button><button class="chip">Silent</button>
+          </div>
+        </div>
+        <div class="config-block range-block">
+          <div class="config-title"><span>OPENING SPEED</span><strong id="speedValue">RESPONSIBLY FAST</strong></div>
+          <input type="range" id="speedRange" min="0" max="100" value="64" aria-label="Opening speed" />
+          <div class="range-labels"><span>🐌 EXTREMELY SLOW</span><span>⚡ RIDICULOUSLY FAST</span></div>
+        </div>
+        <button class="save-config" id="saveConfig">SAVE PERFECT DOOR <span>→</span></button>
+      </div>
+    </section>
+
+    <section id="emergency" class="section emergency-section">
+      <div class="emergency-head">
+        <div>
+          <span class="eyebrow red">03 · DOOR EMERGENCY CENTER</span>
+          <h2>Remain calm.<br><span>It's probably a door.</span></h2>
+        </div>
+        <div class="emergency-status"><span></span>RESPONSE TEAM UNNECESSARILY READY</div>
+      </div>
+
+      <div class="emergency-box">
+        <span class="label">SELECT INCIDENT</span>
+        <h3>What's wrong with your door?</h3>
+        <div class="incident-grid" id="incidentGrid">
+          <button data-response="Running advanced hinge diagnostics. Please avoid making eye contact with the door.">Door won't open <span>→</span></button>
+          <button data-response="Closing protocol escalated. The door has been informed of the situation.">Door won't close <span>→</span></button>
+          <button data-response="Lock subsystem appears emotionally unavailable. Retrying with confidence.">Door won't lock <span>→</span></button>
+          <button data-response="Acoustic anomaly detected. Technical term: weird door noise.">Strange noise <span>→</span></button>
+          <button data-response="Memory support activated. Current recommendation: go check. Revolutionary.">Forgot if I locked it <span>→</span></button>
+          <button data-response="Visual irregularity logged. Door remains legally a door.">Door looks weird <span>→</span></button>
+          <button data-response="Incident classified as 'vibes'. No engineering action required.">I don't know <span>→</span></button>
+          <button class="special-incident" data-response="Emergency resolved.">I just wanted to press something <span>→</span></button>
+        </div>
+        <div class="emergency-response" id="emergencyResponse">
+          <span>INCIDENT CONSOLE</span>
+          <p>Select an incident to begin an excessively formal response procedure.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="achievements" class="section">
+      <div class="section-heading">
+        <span class="eyebrow">04 · DOOR ACHIEVEMENTS</span>
+        <h2>Milestones nobody<br><span>needed to reach.</span></h2>
+      </div>
+      <div class="achievement-grid">
+        <article class="achievement unlocked"><span class="medal">01</span><small>UNLOCKED</small><h3>First Contact</h3><p>Opened your first door.</p></article>
+        <article class="achievement unlocked"><span class="medal">02</span><small>UNLOCKED</small><h3>Commitment Issues</h3><p>Opened and immediately closed the door.</p></article>
+        <article class="achievement"><span class="medal">03</span><small>43% COMPLETE</small><h3>Door Enthusiast</h3><p>Open the door 100 times.</p></article>
+        <article class="achievement"><span class="medal">04</span><small>CLASSIFIED</small><h3>The Final Boss</h3><p>Open a door while carrying something.</p></article>
+        <article class="achievement unlocked"><span class="medal">05</span><small>UNLOCKED</small><h3>Absolutely Nothing</h3><p>Spent 10 minutes looking at Door Dashboard.</p></article>
+        <article class="achievement"><span class="medal">06</span><small>0% COMPLETE</small><h3>Professional</h3><p>Open 500 doors. Please reconsider.</p></article>
+      </div>
+    </section>
+
+    <section class="section intelligence-section">
+      <div class="ai-orb"><span></span></div>
+      <div class="ai-copy">
+        <span class="eyebrow">05 · DOOR AI™</span>
+        <h2>Artificial intelligence.<br><span>Natural obviousness.</span></h2>
+        <p>Our proprietary model converts highly sophisticated door telemetry into insights you already knew.</p>
+        <div class="ai-card">
+          <div><span class="pulse"></span> LIVE DOOR INSIGHT</div>
+          <blockquote id="aiInsight">“You opened your door 23% more frequently today. Statistical models suggest you may open it again.”</blockquote>
+          <button id="newInsight">GENERATE ANOTHER INSIGHT →</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section reviews-section">
+      <div class="review-card">
+        <div class="review-door">
+          <span>BEDROOM DOOR</span>
+          <div class="stars">★★★★★</div>
+          <blockquote>“Opens. Closes.<br>Couldn't ask for more.”</blockquote>
+          <small>— VERIFIED OWNER · 2 DAYS AGO</small>
+        </div>
+        <div class="review-breakdown">
+          <div><span>Opening</span><strong>5.0</strong></div>
+          <div><span>Closing</span><strong>4.9</strong></div>
+          <div><span>Locking</span><strong>4.7</strong></div>
+          <div><span>Aesthetics</span><strong>5.0</strong></div>
+          <div><span>Handle quality</span><strong>4.8</strong></div>
+          <div><span>Overall door-ness</span><strong>5.0</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section final-cta">
+      <span class="eyebrow">THE FUTURE HAS HINGES</span>
+      <h2>It's not just a door.<br><span>Actually, yes. It is.</span></h2>
+      <button id="finalOpen">OPEN THE DOOR <span>→</span></button>
+      <p>No subscription. No meaningful benefit. Door sold separately.</p>
+    </section>
+  </main>
+
+  <div class="toast" id="toast">
+    <div class="toast-icon">D</div>
+    <div><span>DOOR™ SYSTEM</span><p id="toastText">Your door remains closed.</p></div>
+  </div>
+
+  <footer>
+    <a class="brand" href="#home"><span class="brand-mark"><span class="mini-door"></span></span><span>DOOR<sup>™</sup></span></a>
+    <p>© 2026 Door Industries. Solving absolutely nothing, beautifully.</p>
+    <div><a href="#home">System</a><a href="#analytics">Telemetry</a><a href="#emergency">Emergency</a></div>
+  </footer>
+
+  <script src="./script.js"></script>
+</body>
+</html>
