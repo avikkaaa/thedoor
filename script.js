@@ -364,6 +364,9 @@ document.addEventListener('DOMContentLoaded', () => {
       if (typeValue) typeValue.textContent = label.toUpperCase();
       if (doorName) doorName.textContent = label;
 
+      const reviewDoorLabel = document.querySelector('.review-door > span');
+      if (reviewDoorLabel) reviewDoorLabel.textContent = label.toUpperCase();
+
       door.classList.remove(...doorTypeClasses);
       door.classList.add(doorClass);
 
@@ -372,7 +375,11 @@ document.addEventListener('DOMContentLoaded', () => {
         customDoor.classList.add(doorClass);
       }
 
-      showToast(label + ' selected. Door bureaucracy updated successfully.');
+      // Force a clean reflow so the new silhouette/details render immediately.
+      void door.offsetWidth;
+      if (customDoor) void customDoor.offsetWidth;
+
+      showToast(label + ' selected. Door type and sound profile updated.');
     });
   });
 
