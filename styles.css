@@ -1700,3 +1700,221 @@ footer{
   color:#fff2f7;
   border-top:3px solid #ffd84a;
 }
+
+
+/* ===== SLIDING THEME TOGGLE + GRAYSCALE MODE ===== */
+.theme-switch{
+  display:inline-flex;
+  align-items:center;
+  cursor:pointer;
+  user-select:none;
+}
+.theme-switch input{
+  position:absolute;
+  opacity:0;
+  pointer-events:none;
+}
+.theme-slider{
+  position:relative;
+  width:76px;
+  height:36px;
+  border-radius:999px;
+  background:linear-gradient(90deg,#ff6f9f 0%,#2447e8 55%,#53d8b5 100%);
+  border:2px solid rgba(255,255,255,.9);
+  box-shadow:4px 4px 0 #ffd84a;
+  transition:.28s ease;
+}
+.theme-knob{
+  position:absolute;
+  top:3px;
+  left:3px;
+  width:26px;
+  height:26px;
+  border-radius:50%;
+  background:#fff;
+  box-shadow:0 3px 10px rgba(20,24,82,.25);
+  transition:.28s cubic-bezier(.2,.8,.2,1);
+}
+.theme-icon{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  font:700 10px "DM Mono",monospace;
+  color:#fff;
+  pointer-events:none;
+}
+.color-icon{left:10px}
+.mono-icon{right:9px}
+.theme-switch input:checked + .theme-slider{
+  background:linear-gradient(90deg,#111,#4b4b4b,#858585);
+  border-color:#fff;
+  box-shadow:4px 4px 0 #bdbdbd;
+}
+.theme-switch input:checked + .theme-slider .theme-knob{
+  transform:translateX(40px);
+}
+.theme-switch:focus-within .theme-slider{
+  outline:3px solid rgba(255,216,74,.45);
+  outline-offset:3px;
+}
+
+html.grayscale-mode body{
+  background:
+    radial-gradient(circle at 12% 8%,rgba(255,255,255,.08),transparent 22%),
+    radial-gradient(circle at 88% 10%,rgba(255,255,255,.05),transparent 26%),
+    linear-gradient(160deg,#111 0%,#2a2a2a 40%,#4c4c4c 100%);
+  color:#f5f5f5;
+}
+
+html.grayscale-mode .topbar{
+  background:rgba(18,18,18,.8);
+  border-bottom-color:rgba(255,255,255,.14);
+  box-shadow:0 8px 30px rgba(0,0,0,.3);
+}
+html.grayscale-mode .brand-mark{
+  background:linear-gradient(145deg,#f1f1f1,#5d5d5d);
+  border-color:#fff;
+  box-shadow:4px 4px 0 #111;
+}
+html.grayscale-mode .nav{color:#d8d8d8}
+html.grayscale-mode .nav a:hover{color:#fff}
+html.grayscale-mode .nav a:after{background:linear-gradient(90deg,#fff,#8a8a8a)}
+html.grayscale-mode .hero h1,
+html.grayscale-mode .section-heading h2,
+html.grayscale-mode .emergency-head h2,
+html.grayscale-mode .ai-copy h2,
+html.grayscale-mode .final-cta h2{
+  color:#fff;
+  text-shadow:none;
+}
+html.grayscale-mode .hero h1 em,
+html.grayscale-mode .section-heading h2 span,
+html.grayscale-mode .emergency-head h2 span,
+html.grayscale-mode .ai-copy h2 span,
+html.grayscale-mode .final-cta h2 span{
+  color:#cfcfcf;
+}
+html.grayscale-mode .hero-sub,
+html.grayscale-mode .stat-card p,
+html.grayscale-mode .performance-copy p,
+html.grayscale-mode .sticky-heading p,
+html.grayscale-mode .ai-copy p,
+html.grayscale-mode .achievement p,
+html.grayscale-mode .final-cta p{
+  color:#d4d4d4;
+}
+html.grayscale-mode .mystery-chip{
+  background:#f2f2f2;
+  color:#111;
+  border-color:#111;
+  box-shadow:5px 5px 0 #6d6d6d;
+}
+html.grayscale-mode .hero-badges span{
+  background:#f6f6f6;
+  color:#1b1b1b;
+  border-color:#333;
+  box-shadow:4px 4px 0 #707070;
+}
+html.grayscale-mode .curiosity-button,
+html.grayscale-mode .control.primary,
+html.grayscale-mode .save-config,
+html.grayscale-mode .final-cta button,
+html.grayscale-mode .preview-actions button:first-child,
+html.grayscale-mode #confirmApply{
+  background:#111;
+  color:#fff;
+  border-color:#fff;
+  box-shadow:6px 6px 0 #8e8e8e;
+}
+html.grayscale-mode .curiosity-button.ghost,
+html.grayscale-mode #confirmCancel{
+  background:#dcdcdc;
+  color:#111;
+  border-color:#111;
+  box-shadow:6px 6px 0 #666;
+}
+html.grayscale-mode .door-console,
+html.grayscale-mode .stat-card,
+html.grayscale-mode .achievement,
+html.grayscale-mode .ai-card,
+html.grayscale-mode .performance-panel,
+html.grayscale-mode .review-card,
+html.grayscale-mode .emergency-box,
+html.grayscale-mode .studio-preview-card,
+html.grayscale-mode .secret-panel,
+html.grayscale-mode .confirm-modal{
+  background:rgba(245,245,245,.94);
+  color:#171717;
+  border-color:#111;
+  box-shadow:8px 8px 0 #707070;
+}
+html.grayscale-mode .status-pill,
+html.grayscale-mode .preview-badge{
+  background:#e8e8e8;
+  color:#111;
+  border-color:#111;
+}
+html.grayscale-mode .dot{background:#111;box-shadow:0 0 12px #777}
+html.grayscale-mode .control,
+html.grayscale-mode .chip,
+html.grayscale-mode .incident-grid button,
+html.grayscale-mode .preview-actions button:last-child{
+  background:#fff;
+  color:#111;
+  border-color:#222;
+  box-shadow:4px 4px 0 #8b8b8b;
+}
+html.grayscale-mode .chip.active{
+  background:#111;
+  color:#fff;
+  border-color:#111;
+  box-shadow:5px 5px 0 #999;
+}
+html.grayscale-mode .marquee-strip{background:#111}
+html.grayscale-mode .marquee-track{color:#f0f0f0}
+html.grayscale-mode .curiosity-strip,
+html.grayscale-mode .analytics-section,
+html.grayscale-mode .intelligence-section,
+html.grayscale-mode .emergency-section,
+html.grayscale-mode .reviews-section,
+html.grayscale-mode .final-cta{
+  background:linear-gradient(180deg,#1b1b1b,#3a3a3a);
+}
+html.grayscale-mode .curiosity-card{
+  background:#f7f7f7;
+  color:#111;
+  border-color:#111;
+  box-shadow:9px 9px 0 #7b7b7b;
+}
+html.grayscale-mode .curiosity-card strong{color:#111}
+html.grayscale-mode .curiosity-card p{color:#555}
+html.grayscale-mode .bar-chart span{background:linear-gradient(180deg,#111,#8d8d8d)}
+html.grayscale-mode .radial{background:conic-gradient(#111 0 94%,#cacaca 94%)}
+html.grayscale-mode .radial div{background:#f7f7f7}
+html.grayscale-mode .performance-list i{background:linear-gradient(90deg,#111 var(--w),#d3d3d3 var(--w))}
+html.grayscale-mode .ai-orb span{
+  background:radial-gradient(circle at 35% 30%,#fff,#cfcfcf 22%,#777 50%,#111 78%);
+  box-shadow:0 0 120px rgba(255,255,255,.16);
+}
+html.grayscale-mode .toast{
+  background:#f2f2f2;
+  color:#111;
+  border-color:#111;
+  box-shadow:7px 7px 0 #777;
+}
+html.grayscale-mode .toast-icon{background:#111;color:#fff;border-color:#111}
+html.grayscale-mode footer{
+  background:#111;
+  color:#e8e8e8;
+  border-top-color:#bdbdbd;
+}
+
+/* keep physical door materials realistic in grayscale mode */
+html.grayscale-mode .door.material-wood,
+html.grayscale-mode .door.material-glass,
+html.grayscale-mode .door.material-metal,
+html.grayscale-mode .door.material-marble,
+html.grayscale-mode .door.material-futuristic,
+html.grayscale-mode .door.material-expensive{
+  filter:none;
+}
