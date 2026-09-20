@@ -93,16 +93,67 @@ document.addEventListener('DOMContentLoaded', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 
+  const materialClasses = [
+    'material-wood','material-glass','material-metal','material-marble','material-futuristic','material-expensive'
+  ];
+  const handleClasses = [
+    'handle-round','handle-modern','handle-gold','handle-giant','handle-unnecessary'
+  ];
+
+  const applyDoorStyle = (groupName, value) => {
+    const normalized = value.trim().toLowerCase();
+
+    if (groupName === 'material') {
+      door.classList.remove(...materialClasses);
+      const map = {
+        wood: 'material-wood',
+        glass: 'material-glass',
+        metal: 'material-metal',
+        marble: 'material-marble',
+        futuristic: 'material-futuristic',
+        'suspiciously expensive': 'material-expensive'
+      };
+      door.classList.add(map[normalized] || 'material-wood');
+      note.textContent = `${value} material applied. Door prestige has increased unnecessarily.`;
+    }
+
+    if (groupName === 'handle') {
+      door.classList.remove(...handleClasses);
+      const map = {
+        'round knob': 'handle-round',
+        'modern handle': 'handle-modern',
+        'gold handle': 'handle-gold',
+        'giant handle': 'handle-giant',
+        'unnecessary handle': 'handle-unnecessary'
+      };
+      door.classList.add(map[normalized] || 'handle-modern');
+      note.textContent = `${value} installed. Ergonomic impact: mostly emotional.`;
+    }
+
+    if (groupName === 'sound') {
+      const soundCopy = {
+        'classic creak': 'Classic creak selected. Historical authenticity increased by 38%.',
+        'soft click': 'Soft click selected. Very tasteful. Very door.',
+        'heavy thud': 'Heavy THUD selected. Neighbours may now respect the door.',
+        'sci-fi': 'Sci-fi selected. Door believes it is on a spaceship.',
+        'silent': 'Silent mode selected. The door will now open mysteriously.'
+      };
+      note.textContent = soundCopy[normalized] || 'Door sound profile updated.';
+    }
+  };
+
   document.querySelectorAll('.chips').forEach((group) => {
     group.querySelectorAll('.chip').forEach((chip) => {
       chip.addEventListener('click', () => {
         group.querySelectorAll('.chip').forEach((item) => item.classList.remove('active'));
         chip.classList.add('active');
 
+        const value = chip.textContent.trim();
         const output = $(`${group.dataset.group}Value`);
-        if (output) output.textContent = chip.textContent.trim().toUpperCase();
+        if (output) output.textContent = value.toUpperCase();
 
-        showToast(`${chip.textContent.trim()} selected. Door engineering has never been this unnecessary.`);
+        applyDoorStyle(group.dataset.group, value);
+        showToast(`${value} selected. Door engineering has never been this unnecessary.`);
       });
     });
   });
@@ -110,14 +161,20 @@ document.addEventListener('DOMContentLoaded', () => {
   const speed = $('speedRange');
   const speedValue = $('speedValue');
   if (speed && speedValue) {
-    speed.addEventListener('input', () => {
+    const syncSpeed = () => {
       const value = Number(speed.value);
       speedValue.textContent =
         value < 25 ? 'CEREMONIALLY SLOW' :
         value < 50 ? 'CAUTIOUS' :
         value < 75 ? 'RESPONSIBLY FAST' :
         'RIDICULOUSLY FAST';
-    });
+
+      const duration = 1.6 - (value / 100) * 1.25;
+      door.style.setProperty('--door-speed', `${duration.toFixed(2)}s`);
+    };
+
+    speed.addEventListener('input', syncSpeed);
+    syncSpeed();
   }
 
   bind('saveConfig', () => {
@@ -165,6 +222,7 @@ document.addEventListener('DOMContentLoaded', () => {
     );
   });
 
+  door.classList.add('material-wood','handle-modern');
   render();
   console.info('DOOR™ interface initialized successfully.');
 });
