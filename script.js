@@ -151,21 +151,76 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
+  let pendingDoorChange = null;
+
+  const openConfirm = (group, chip) => {
+    const value = chip.textContent.trim();
+    pendingDoorChange = { group, chip, value };
+
+    const overlay = $('confirmOverlay');
+    const type = $('confirmType');
+    const confirmValue = $('confirmValue');
+    const confirmText = $('confirmText');
+
+    if (type) type.textContent = group.dataset.group.toUpperCase();
+    if (confirmValue) confirmValue.textContent = value.toUpperCase();
+    if (confirmText) {
+      confirmText.textContent =
+        `You are about to change the door's ${group.dataset.group} to ${value}. This is reversible, unnecessary, and therefore requires formal approval.`;
+    }
+
+    if (overlay) {
+      overlay.classList.add('show');
+      overlay.setAttribute('aria-hidden','false');
+    }
+  };
+
+  const closeConfirm = () => {
+    const overlay = $('confirmOverlay');
+    if (overlay) {
+      overlay.classList.remove('show');
+      overlay.setAttribute('aria-hidden','true');
+    }
+  };
+
   document.querySelectorAll('.chips').forEach((group) => {
     group.querySelectorAll('.chip').forEach((chip) => {
-      chip.addEventListener('click', () => {
-        group.querySelectorAll('.chip').forEach((item) => item.classList.remove('active'));
-        chip.classList.add('active');
-
-        const value = chip.textContent.trim();
-        const output = $(`${group.dataset.group}Value`);
-        if (output) output.textContent = value.toUpperCase();
-
-        applyDoorStyle(group.dataset.group, value);
-        showToast(`${value} selected. Door engineering has never been this unnecessary.`);
-      });
+      chip.addEventListener('click', () => openConfirm(group, chip));
     });
   });
+
+  bind('confirmCancel', () => {
+    closeConfirm();
+    showToast('Change cancelled. The door remains emotionally stable.');
+    pendingDoorChange = null;
+  });
+
+  bind('confirmApply', () => {
+    if (!pendingDoorChange) return;
+
+    const { group, chip, value } = pendingDoorChange;
+    group.querySelectorAll('.chip').forEach((item) => item.classList.remove('active'));
+    chip.classList.add('active');
+
+    const output = $(`${group.dataset.group}Value`);
+    if (output) output.textContent = value.toUpperCase();
+
+    applyDoorStyle(group.dataset.group, value);
+    showToast(`${value} confirmed. The door has been officially altered.`);
+
+    closeConfirm();
+    pendingDoorChange = null;
+  });
+
+  const confirmOverlay = $('confirmOverlay');
+  if (confirmOverlay) {
+    confirmOverlay.addEventListener('click', (event) => {
+      if (event.target === confirmOverlay) {
+        closeConfirm();
+        pendingDoorChange = null;
+      }
+    });
+  }
 
   const speed = $('speedRange');
   const speedValue = $('speedValue');
