@@ -18,6 +18,62 @@ document.addEventListener('DOMContentLoaded', () => {
   let isLocked = true;
   let count = Number(openCount.textContent) || 17;
   let toastTimer;
+  let audioContext;
+
+  const getAudioContext = () => {
+    if (!audioContext) {
+      const AudioCtx = window.AudioContext || window.webkitAudioContext;
+      if (AudioCtx) audioContext = new AudioCtx();
+    }
+    return audioContext;
+  };
+
+  const playTone = ({ start = 220, end = 180, duration = .12, type = 'sine', gain = .05, delay = 0 }) => {
+    const ctx = getAudioContext();
+    if (!ctx) return;
+
+    const osc = ctx.createOscillator();
+    const amp = ctx.createGain();
+    const now = ctx.currentTime + delay;
+
+    osc.type = type;
+    osc.frequency.setValueAtTime(start, now);
+    osc.frequency.exponentialRampToValueAtTime(Math.max(1, end), now + duration);
+
+    amp.gain.setValueAtTime(.0001, now);
+    amp.gain.exponentialRampToValueAtTime(gain, now + .01);
+    amp.gain.exponentialRampToValueAtTime(.0001, now + duration);
+
+    osc.connect(amp);
+    amp.connect(ctx.destination);
+    osc.start(now);
+    osc.stop(now + duration + .02);
+  };
+
+  const playDoorSound = (action) => {
+    const ctx = getAudioContext();
+    if (ctx && ctx.state === 'suspended') ctx.resume();
+
+    if (action === 'open') {
+      playTone({ start: 180, end: 110, duration: .22, type: 'triangle', gain: .035 });
+      playTone({ start: 520, end: 420, duration: .06, type: 'sine', gain: .018, delay: .03 });
+    }
+
+    if (action === 'close') {
+      playTone({ start: 130, end: 72, duration: .16, type: 'triangle', gain: .055 });
+      playTone({ start: 72, end: 48, duration: .08, type: 'square', gain: .018, delay: .12 });
+    }
+
+    if (action === 'lock') {
+      playTone({ start: 760, end: 520, duration: .055, type: 'square', gain: .025 });
+      playTone({ start: 420, end: 330, duration: .07, type: 'square', gain: .022, delay: .07 });
+    }
+
+    if (action === 'unlock') {
+      playTone({ start: 330, end: 520, duration: .07, type: 'square', gain: .022 });
+      playTone({ start: 520, end: 760, duration: .055, type: 'square', gain: .025, delay: .07 });
+    }
+  };
 
   const showToast = (message) => {
     toastText.textContent = message;
@@ -52,12 +108,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     note.textContent = 'Door opened successfully. Civilization continues.';
+    playDoorSound('open');
     render();
   });
 
   bind('closeBtn', () => {
     isOpen = false;
     note.textContent = 'Door closed. A highly complex operation is now complete.';
+    playDoorSound('close');
     showToast('Your door is closed again.');
     render();
   });
@@ -72,12 +130,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     isLocked = true;
     note.textContent = 'Security posture upgraded: door closed and locked.';
+    playDoorSound('lock');
     render();
   });
 
   bind('unlockBtn', () => {
     isLocked = false;
     note.textContent = 'Door unlocked. Access to the other side is now technically possible.';
+    playDoorSound('unlock');
     showToast('Door unlocked. Revolutionary.');
     render();
   });
@@ -89,6 +149,7 @@ document.addEventListener('DOMContentLoaded', () => {
       count += 1;
       openCount.textContent = String(count);
     }
+    playDoorSound('open');
     render();
     showToast('You opened the door. This is what the entire product was for.');
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -246,10 +307,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   bind('previewOpen', () => {
     if (customDoor) customDoor.classList.add('open');
+    playDoorSound('open');
   });
 
   bind('previewClose', () => {
     if (customDoor) customDoor.classList.remove('open');
+    playDoorSound('close');
   });
 
   bind('saveConfig', () => {
