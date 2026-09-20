@@ -30,6 +30,7 @@
   <main>
     <section id="home" class="hero section">
       <div class="hero-copy">
+        <div class="mystery-chip" id="mysteryChip">FIELD NOTE 07 · DO NOT OVERTHINK THE DOOR</div>
         <span class="eyebrow">DOOR OS 4.2 · SYSTEM NOMINAL</span>
         <h1>Finally, a smarter way<br>to use a <em>door.</em></h1>
         <p class="hero-sub">A precision-engineered ecosystem for opening, closing, locking and — when absolutely necessary — unlocking your door.</p>
@@ -37,6 +38,10 @@
           <span>Hinge latency 12ms</span>
           <span>Door uptime 99.98%</span>
           <span>Zero meaningful problems solved</span>
+        </div>
+        <div class="curiosity-row">
+          <button class="curiosity-button" id="whyButton">WHY DOES THIS EXIST?</button>
+          <button class="curiosity-button ghost" id="secretButton">DO NOT PRESS</button>
         </div>
       </div>
 
@@ -74,6 +79,18 @@
           <button class="control" id="unlockBtn"><span>⌁</span>UNLOCK</button>
         </div>
         <p class="system-note" id="systemNote">Door has been closed for 02:14:37. Everything is under control.</p>
+      </div>
+    </section>
+
+    <section class="curiosity-strip">
+      <div class="curiosity-card tilt-card">
+        <span>01</span><strong>The door remembers nothing.</strong><p>We still built analytics for it.</p>
+      </div>
+      <div class="curiosity-card tilt-card">
+        <span>02</span><strong>There is no cloud.</strong><p>But the UI will make you suspicious anyway.</p>
+      </div>
+      <div class="curiosity-card tilt-card">
+        <span>03</span><strong>Secret metric detected.</strong><p>Door confidence: unnecessarily high.</p>
       </div>
     </section>
 
@@ -280,6 +297,20 @@
       <p>No subscription. No meaningful benefit. Door sold separately.</p>
     </section>
   </main>
+
+  <div class="secret-panel" id="secretPanel" aria-hidden="true">
+    <button id="closeSecret">×</button>
+    <span class="eyebrow">CLASSIFIED DOOR KNOWLEDGE</span>
+    <h3>The door was never the product.</h3>
+    <p>The product was the confidence with which we convinced you it needed telemetry.</p>
+    <div class="secret-stats">
+      <div><span>USEFULNESS</span><strong>0%</strong></div>
+      <div><span>COMMITMENT</span><strong>100%</strong></div>
+      <div><span>WHY</span><strong>UNKNOWN</strong></div>
+    </div>
+  </div>
+
+  <div class="cursor-orb" id="cursorOrb"></div>
 
   <div class="toast" id="toast">
     <div class="toast-icon">D</div>
