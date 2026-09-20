@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const openCount = $('openCount');
 
   if (!door || !statusText || !note || !toast || !toastText || !openCount) {
-    console.error('DOOR™ failed to initialize: required UI elements are missing.');
+    console.error('DOOR failed to initialize: required UI elements are missing.');
     return;
   }
 
@@ -621,5 +621,5 @@ document.addEventListener('DOMContentLoaded', () => {
   door.classList.add('material-wood','handle-modern','type-bedroom');
   if (customDoor) customDoor.classList.add('material-wood','handle-modern','type-bedroom');
   render();
-  console.info('DOOR™ interface initialized successfully.');
+  console.info('DOOR interface initialized successfully.');
 });
