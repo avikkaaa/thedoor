@@ -233,6 +233,61 @@ document.addEventListener('DOMContentLoaded', () => {
     showToast('DOOR AI™ has completed another deeply necessary analysis.');
   });
 
+  bind('whyButton', () => {
+    showToast('No one asked for this. That is precisely why it exists.');
+  });
+
+  bind('secretButton', () => {
+    const panel = $('secretPanel');
+    if (panel) {
+      panel.classList.add('show');
+      panel.setAttribute('aria-hidden','false');
+    }
+  });
+
+  bind('closeSecret', () => {
+    const panel = $('secretPanel');
+    if (panel) {
+      panel.classList.remove('show');
+      panel.setAttribute('aria-hidden','true');
+    }
+  });
+
+  const mysteryNotes = [
+    'FIELD NOTE 07 · DO NOT OVERTHINK THE DOOR',
+    'OBSERVATION · THE HINGE KNOWS NOTHING',
+    'SYSTEM WHISPER · OPENING IS A STATE OF MIND',
+    'CLASSIFIED · HANDLE LATENCY REMAINS DRAMATIC'
+  ];
+  let mysteryIndex = 0;
+  const mysteryChip = $('mysteryChip');
+  if (mysteryChip) {
+    mysteryChip.addEventListener('click', () => {
+      mysteryIndex = (mysteryIndex + 1) % mysteryNotes.length;
+      mysteryChip.textContent = mysteryNotes[mysteryIndex];
+    });
+  }
+
+  const orb = $('cursorOrb');
+  if (orb && window.matchMedia('(pointer:fine)').matches) {
+    window.addEventListener('pointermove', (event) => {
+      orb.style.left = event.clientX + 'px';
+      orb.style.top = event.clientY + 'px';
+    });
+  }
+
+  document.querySelectorAll('.tilt-card').forEach((card) => {
+    card.addEventListener('pointermove', (event) => {
+      const rect = card.getBoundingClientRect();
+      const x = (event.clientX - rect.left) / rect.width - .5;
+      const y = (event.clientY - rect.top) / rect.height - .5;
+      card.style.transform = `perspective(800px) rotateX(${-y * 7}deg) rotateY(${x * 9}deg) translateY(-4px)`;
+    });
+    card.addEventListener('pointerleave', () => {
+      card.style.transform = '';
+    });
+  });
+
   bind('themeButton', () => {
     document.documentElement.classList.toggle('light');
     showToast(
