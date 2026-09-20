@@ -2417,3 +2417,264 @@ html.grayscale-mode #doorVisual,
 html.grayscale-mode #customDoorVisual{
   filter:grayscale(1) saturate(0) !important;
 }
+
+
+/* ===== FINAL TEXT VISIBILITY FIX ===== */
+
+/* Dark/colourful section text */
+.hero .eyebrow,
+.analytics-section .eyebrow,
+.emergency-section .eyebrow,
+.intelligence-section .eyebrow,
+.final-cta .eyebrow{
+  color:#fff3f8 !important;
+}
+
+.analytics-section .section-heading h2,
+.emergency-section .emergency-head h2,
+.intelligence-section .ai-copy h2,
+.final-cta h2{
+  color:#ffffff !important;
+}
+
+.analytics-section .section-heading h2 span,
+.emergency-section .emergency-head h2 span,
+.intelligence-section .ai-copy h2 span,
+.final-cta h2 span{
+  color:#ffe05a !important;
+}
+
+.analytics-section .section-heading p,
+.emergency-section .emergency-head p,
+.intelligence-section .ai-copy > p,
+.final-cta > p{
+  color:#f7eef7 !important;
+}
+
+/* White/light cards */
+.door-console,
+.stat-card,
+.performance-panel,
+.achievement,
+.ai-card,
+.review-card,
+.emergency-box,
+.studio-preview-card,
+.curiosity-card,
+.confirm-modal,
+.secret-panel,
+.config-panel{
+  color:#161426 !important;
+}
+
+.door-console h2,
+.stat-card h3,
+.performance-panel h3,
+.achievement h3,
+.ai-card h3,
+.review-card h3,
+.emergency-box h3,
+.studio-preview-card h3,
+.curiosity-card strong,
+.confirm-modal h3,
+.secret-panel h3,
+.config-panel h3{
+  color:#161426 !important;
+}
+
+.door-console p,
+.stat-card p,
+.performance-panel p,
+.achievement p,
+.ai-card p,
+.review-card p,
+.emergency-box p,
+.studio-preview-card p,
+.curiosity-card p,
+.confirm-modal p,
+.secret-panel p,
+.config-panel p{
+  color:#554c63 !important;
+}
+
+/* Small labels and metadata on light cards */
+.door-console .label,
+.stat-card .card-top,
+.performance-panel .label,
+.studio-preview-card .label,
+.preview-meta span,
+.review-breakdown span,
+.secret-stats span,
+.confirm-summary span,
+.config-title span{
+  color:#5f566d !important;
+}
+
+.preview-meta strong,
+.review-breakdown strong,
+.secret-stats strong,
+.confirm-summary strong,
+.config-title strong,
+.big-stat,
+.metric,
+.performance-score{
+  color:#17152f !important;
+}
+
+/* Door-type cards: selected state must stay readable */
+.door-type-card{
+  color:#18152f !important;
+}
+.door-type-card strong{
+  color:#18152f !important;
+}
+.door-type-card span,
+.door-type-card small{
+  color:#62566f !important;
+}
+.door-type-card.active{
+  background:#2447e8 !important;
+  color:#fff !important;
+}
+.door-type-card.active strong{
+  color:#fff !important;
+}
+.door-type-card.active span,
+.door-type-card.active small{
+  color:#eef3ff !important;
+}
+
+/* Chips */
+.chip{
+  color:#1730b8 !important;
+  background:#fff !important;
+}
+.chip.active{
+  color:#fff !important;
+  background:#2447e8 !important;
+}
+
+/* Main action buttons */
+.control{
+  color:#1730b8 !important;
+}
+.control.primary{
+  color:#fff !important;
+}
+.preview-actions button:last-child{
+  color:#1730b8 !important;
+  background:#fff !important;
+}
+.preview-actions button:first-child,
+.save-config,
+#confirmApply,
+.final-cta button{
+  color:#fff !important;
+}
+
+/* Emergency buttons and response */
+.incident-grid button{
+  color:#1730b8 !important;
+  background:#fff !important;
+}
+.emergency-response{
+  color:#201a39 !important;
+}
+.emergency-response span{
+  color:#1730b8 !important;
+}
+.emergency-response p{
+  color:#554c63 !important;
+}
+
+/* Review card */
+.review-door,
+.review-door blockquote,
+.review-door small{
+  color:#18152f !important;
+}
+.review-door > span{
+  color:#1730b8 !important;
+}
+
+/* AI card */
+.ai-card,
+.ai-card blockquote{
+  color:#18152f !important;
+}
+.ai-card > div{
+  color:#1730b8 !important;
+}
+.ai-card button{
+  color:#1730b8 !important;
+}
+
+/* Status, badges, toast */
+.status-pill,
+.preview-badge,
+.mystery-chip,
+.toast{
+  color:#17215f !important;
+}
+.hero-badges span{
+  color:#1730b8 !important;
+}
+
+/* Header */
+.brand,
+.nav a{
+  color:#fff !important;
+}
+
+/* Grayscale: remove all low-contrast leftovers */
+html.grayscale-mode .eyebrow,
+html.grayscale-mode .hero .eyebrow,
+html.grayscale-mode .analytics-section .eyebrow,
+html.grayscale-mode .emergency-section .eyebrow,
+html.grayscale-mode .intelligence-section .eyebrow,
+html.grayscale-mode .final-cta .eyebrow{
+  color:#f2f2f2 !important;
+}
+
+html.grayscale-mode .door-type-card.active,
+html.grayscale-mode .chip.active,
+html.grayscale-mode .control.primary,
+html.grayscale-mode .save-config,
+html.grayscale-mode #confirmApply,
+html.grayscale-mode .preview-actions button:first-child,
+html.grayscale-mode .final-cta button{
+  background:#111 !important;
+  color:#fff !important;
+}
+
+html.grayscale-mode .door-type-card.active strong,
+html.grayscale-mode .door-type-card.active span,
+html.grayscale-mode .door-type-card.active small,
+html.grayscale-mode .chip.active{
+  color:#fff !important;
+}
+
+html.grayscale-mode .incident-grid button,
+html.grayscale-mode .control,
+html.grayscale-mode .chip:not(.active),
+html.grayscale-mode .preview-actions button:last-child{
+  color:#111 !important;
+  background:#fff !important;
+}
+
+html.grayscale-mode .review-door,
+html.grayscale-mode .review-door blockquote,
+html.grayscale-mode .review-door small,
+html.grayscale-mode .ai-card,
+html.grayscale-mode .ai-card blockquote,
+html.grayscale-mode .emergency-response,
+html.grayscale-mode .emergency-response p{
+  color:#111 !important;
+}
+
+html.grayscale-mode .review-door > span,
+html.grayscale-mode .ai-card > div,
+html.grayscale-mode .ai-card button,
+html.grayscale-mode .emergency-response span{
+  color:#222 !important;
+}
