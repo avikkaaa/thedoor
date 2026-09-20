@@ -300,3 +300,102 @@ footer{border-color:#c8d9d3;color:#6c8181}
   border-color:rgba(255,255,255,.48);
   background:linear-gradient(145deg,#9d8e76,#d5c8ae);
 }
+
+
+/* ===== DOOR STUDIO LIVE PREVIEW ===== */
+.studio-workspace{
+  display:grid;
+  grid-template-columns:minmax(280px,.82fr) minmax(360px,1.18fr);
+  gap:28px;
+  align-items:start;
+}
+.studio-preview-card{
+  position:sticky;
+  top:110px;
+  border:1px solid #c7d9d2;
+  background:rgba(255,255,255,.7);
+  border-radius:24px;
+  padding:20px;
+  box-shadow:0 20px 48px rgba(67,105,108,.09);
+  backdrop-filter:blur(14px);
+}
+.preview-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px}
+.preview-head h3{margin:5px 0 0;font-size:20px}
+.preview-badge{
+  font:500 9px "DM Mono",monospace;
+  color:#557c76;
+  padding:7px 9px;
+  border:1px solid #b7cdc5;
+  border-radius:999px;
+  background:#e8f2ed;
+}
+.studio-door-stage{
+  min-height:420px;
+  display:grid;
+  place-items:center;
+  position:relative;
+  overflow:hidden;
+  border-radius:20px;
+  background:
+    radial-gradient(circle at 50% 22%,rgba(255,255,255,.85),transparent 32%),
+    linear-gradient(180deg,#dcebe6,#c8dbd6);
+  box-shadow:inset 0 0 0 1px rgba(77,115,117,.08);
+  perspective:1200px;
+}
+.preview-grid{
+  position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(68,110,113,.05) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(68,110,113,.05) 1px,transparent 1px);
+  background-size:24px 24px;
+  mask-image:linear-gradient(to bottom,rgba(0,0,0,.5),transparent 90%);
+}
+.studio-door-frame{
+  width:180px;
+  height:310px;
+  z-index:2;
+}
+#customDoorVisual{
+  transition:transform var(--door-speed,.85s) cubic-bezier(.2,.75,.2,1),background .45s ease,box-shadow .45s ease,border-color .45s ease;
+}
+.studio-door-shadow{
+  position:absolute;
+  width:230px;height:34px;border-radius:50%;
+  background:rgba(65,96,94,.16);
+  filter:blur(10px);
+  bottom:38px;
+}
+.preview-meta{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px;
+  margin-top:14px;
+}
+.preview-meta div{
+  padding:12px;
+  border:1px solid #d2e0db;
+  border-radius:12px;
+  background:rgba(248,251,249,.74);
+}
+.preview-meta span{display:block;font:500 8px "DM Mono",monospace;color:#7b9290;margin-bottom:5px}
+.preview-meta strong{font-size:10px;color:#31545a}
+.preview-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+.preview-actions button{
+  padding:12px 14px;
+  border-radius:10px;
+  border:1px solid #bfd2cb;
+  background:rgba(255,255,255,.72);
+  color:#3c6267;
+  font:600 9px "DM Mono",monospace;
+  cursor:pointer;
+  transition:.2s;
+}
+.preview-actions button:first-child{
+  background:linear-gradient(135deg,#84aa9b,#88bad0);
+  color:white;border-color:transparent;
+}
+.preview-actions button:hover{transform:translateY(-2px);box-shadow:0 8px 18px rgba(72,108,110,.1)}
+@media(max-width:1050px){
+  .studio-workspace{grid-template-columns:1fr}
+  .studio-preview-card{position:relative;top:auto}
+}
