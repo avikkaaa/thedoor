@@ -298,6 +298,23 @@
     </section>
   </main>
 
+  <div class="confirm-overlay" id="confirmOverlay" aria-hidden="true">
+    <div class="confirm-modal">
+      <span class="eyebrow">DOOR CHANGE PROTOCOL</span>
+      <h3>Are you sure?</h3>
+      <p id="confirmText">This will alter the door in a way that is entirely reversible and still somehow requires confirmation.</p>
+      <div class="confirm-summary">
+        <span id="confirmType">MATERIAL</span>
+        <strong id="confirmValue">WOOD</strong>
+      </div>
+      <div class="confirm-actions">
+        <button id="confirmCancel">NO, KEEP THE DOOR</button>
+        <button id="confirmApply">YES, CHANGE IT</button>
+      </div>
+      <small>This decision has no meaningful consequences.</small>
+    </div>
+  </div>
+
   <div class="secret-panel" id="secretPanel" aria-hidden="true">
     <button id="closeSecret">×</button>
     <span class="eyebrow">CLASSIFIED DOOR KNOWLEDGE</span>
