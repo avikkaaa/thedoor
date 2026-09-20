@@ -245,3 +245,58 @@ footer{border-color:#c8d9d3;color:#6c8181}
   .door-console{padding:14px;border-radius:22px}
   .door-stage{height:340px}
 }
+
+
+/* ===== REALISTIC DOOR MATERIALS — THEME STAYS SAGE/BLUE ===== */
+.door{
+  background:linear-gradient(120deg,#7b5639,#5a3d29);
+  border-color:#8a674d;
+  box-shadow:inset -18px 0 28px rgba(54,34,22,.18),inset 0 0 0 1px rgba(255,255,255,.1);
+}
+.door.material-wood{
+  background:
+    linear-gradient(90deg,rgba(255,255,255,.025),rgba(0,0,0,.05)),
+    repeating-linear-gradient(92deg,#8b603f 0 13px,#7a5237 13px 17px,#69462f 17px 30px);
+  border-color:#8b684d;
+}
+.door.material-glass{
+  background:linear-gradient(145deg,rgba(232,242,245,.34),rgba(168,193,202,.16));
+  border-color:#aebfc5;
+  backdrop-filter:blur(8px);
+  box-shadow:inset 0 0 34px rgba(255,255,255,.45),0 0 24px rgba(120,145,153,.12);
+}
+.door.material-glass .door-panel{
+  border-color:rgba(255,255,255,.58);
+  background:linear-gradient(135deg,rgba(255,255,255,.2),rgba(170,190,196,.06));
+}
+.door.material-metal{
+  background:linear-gradient(105deg,#c5c9ca 0%,#8f989b 24%,#dadcdd 48%,#7f898d 72%,#b9bfc1 100%);
+  border-color:#929a9d;
+}
+.door.material-marble{
+  background:
+    linear-gradient(115deg,transparent 0 44%,rgba(86,91,98,.22) 45%,transparent 48%),
+    linear-gradient(42deg,transparent 0 62%,rgba(145,133,122,.16) 63%,transparent 66%),
+    linear-gradient(135deg,#f3f1ed,#d8d4ce);
+  border-color:#c9c2b9;
+}
+.door.material-futuristic{
+  background:linear-gradient(135deg,#23272b,#3a4147 48%,#5a6268);
+  border-color:#707b82;
+  box-shadow:inset 0 0 0 1px rgba(214,228,233,.14),0 0 28px rgba(60,70,76,.2);
+}
+.door.material-futuristic:before{
+  border-color:rgba(194,211,218,.35);
+  box-shadow:inset 0 0 18px rgba(190,208,216,.06);
+}
+.door.material-expensive{
+  background:linear-gradient(135deg,#b59b63,#e1c98d 28%,#9a7d42 62%,#d4ba77);
+  border-color:#b79d61;
+  box-shadow:inset 0 0 35px rgba(255,255,255,.18),0 0 30px rgba(166,133,64,.15);
+}
+.door-handle{background:#b7a58d}
+.door.handle-gold .door-handle{background:linear-gradient(90deg,#9e7626,#e9c86c,#8c661e)}
+.door.handle-unnecessary .door-handle{
+  border-color:rgba(255,255,255,.48);
+  background:linear-gradient(145deg,#9d8e76,#d5c8ae);
+}
