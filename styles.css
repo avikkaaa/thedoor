@@ -1110,3 +1110,168 @@ footer{
   .hero h1,.section-heading h2,.emergency-head h2,.ai-copy h2{font-size:52px}
   .curiosity-button,.control,.chip{box-shadow:3px 3px 0 #ffd83d}
 }
+
+
+/* ===== DARK ROYAL PURPLE + CHATAK YELLOW FINAL OVERRIDE ===== */
+:root{
+  --bg:#fff4a8;
+  --panel:#fffdf5;
+  --panel2:#f1e4ff;
+  --text:#24093d;
+  --muted:#6e5a80;
+  --line:#caa7ea;
+  --accent:#5a00d6;
+  --accent-2:#ffd400;
+  --accent-deep:#32007a;
+}
+
+body{
+  background:
+    radial-gradient(circle at 8% 7%,rgba(255,212,0,.78),transparent 22%),
+    radial-gradient(circle at 92% 10%,rgba(90,0,214,.50),transparent 28%),
+    linear-gradient(180deg,#fff7bf 0%,#f6e8ff 48%,#fff19c 100%);
+  color:var(--text);
+}
+
+.topbar{
+  background:rgba(255,247,191,.9);
+  border-bottom:2px solid rgba(90,0,214,.2);
+}
+
+.brand-mark{
+  background:linear-gradient(145deg,#ffd400,#6c18ff);
+  border-color:#4a00b4;
+  box-shadow:0 0 0 2px #2f006f;
+}
+
+.icon-button{
+  background:#5a00d6;
+  color:#fff;
+  border:2px solid #2f006f;
+  box-shadow:4px 4px 0 #ffd400;
+}
+
+.hero h1 em,
+.section-heading h2 span,
+.emergency-head h2 span,
+.ai-copy h2 span,
+.final-cta h2 span{
+  color:#5a00d6;
+}
+
+.mystery-chip{
+  background:#ffd400;
+  color:#2f006f;
+  border:2px solid #2f006f;
+  box-shadow:4px 4px 0 #5a00d6;
+}
+
+.hero-badges span{
+  background:#fff;
+  border:2px solid #5a00d6;
+  color:#46117b;
+  box-shadow:3px 3px 0 #ffd400;
+}
+
+.curiosity-button,
+.save-config,
+.final-cta button,
+.preview-actions button:first-child,
+#confirmApply,
+.control.primary{
+  background:#5a00d6;
+  color:#fff;
+  border:2px solid #2f006f;
+  box-shadow:5px 5px 0 #ffd400;
+}
+
+.curiosity-button.ghost,
+#confirmCancel{
+  background:#ffd400;
+  color:#2f006f;
+  border:2px solid #2f006f;
+  box-shadow:5px 5px 0 #8b52ff;
+}
+
+.control,
+.chip,
+.incident-grid button,
+.preview-actions button:last-child{
+  background:#fff;
+  border:2px solid #6b2ec8;
+  color:#4e187d;
+  box-shadow:4px 4px 0 #ffd400;
+}
+
+.chip.active{
+  background:#5a00d6;
+  color:#fff;
+  border-color:#2f006f;
+  box-shadow:4px 4px 0 #ffd400;
+}
+
+.door-console,
+.stat-card,
+.achievement,
+.ai-card,
+.performance-panel,
+.review-card,
+.emergency-box,
+.studio-preview-card,
+.secret-panel,
+.confirm-modal{
+  border:2px solid #5a00d6;
+  box-shadow:8px 8px 0 #ffd400;
+}
+
+.status-pill,
+.preview-badge{
+  background:#ffd400;
+  color:#34006f;
+  border:2px solid #34006f;
+}
+
+.dot{
+  background:#5a00d6;
+  box-shadow:0 0 14px #5a00d6;
+}
+
+.marquee-strip{
+  background:#5a00d6;
+}
+
+.marquee-track{
+  color:#ffd400;
+  font-weight:800;
+}
+
+.bar-chart span{
+  background:linear-gradient(180deg,#ffd400,#5a00d6);
+}
+
+.radial{
+  background:conic-gradient(#5a00d6 0 94%,#ffe97a 94%);
+}
+
+.ai-orb span{
+  background:radial-gradient(circle at 35% 30%,#fff7a8,#ffd400 22%,#8a4bff 50%,#4b00b3 76%);
+  box-shadow:0 0 120px rgba(90,0,214,.34);
+}
+
+.toast{
+  background:#fff3a8;
+  border:2px solid #5a00d6;
+  color:#36086b;
+  box-shadow:7px 7px 0 #5a00d6;
+}
+
+.toast-icon{
+  background:#5a00d6;
+  color:#fff;
+  border:2px solid #2f006f;
+}
+
+footer{
+  border-top:2px solid #5a00d6;
+  background:rgba(255,244,168,.8);
+}
