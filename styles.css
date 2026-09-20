@@ -399,3 +399,133 @@ footer{border-color:#c8d9d3;color:#6c8181}
   .studio-workspace{grid-template-columns:1fr}
   .studio-preview-card{position:relative;top:auto}
 }
+
+
+/* ===== CURIOSITY LAYER ===== */
+.mystery-chip{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:8px 11px;
+  margin-bottom:14px;
+  border:1px solid rgba(99,140,142,.25);
+  background:rgba(255,255,255,.42);
+  border-radius:999px;
+  font:500 9px "DM Mono",monospace;
+  letter-spacing:.11em;
+  color:#587a7b;
+  box-shadow:0 8px 22px rgba(58,91,95,.06);
+  animation:driftChip 5s ease-in-out infinite;
+}
+@keyframes driftChip{50%{transform:translateY(-4px)}}
+.curiosity-row{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap}
+.curiosity-button{
+  border:0;
+  border-radius:999px;
+  padding:12px 15px;
+  font:600 9px "DM Mono",monospace;
+  letter-spacing:.09em;
+  cursor:pointer;
+  background:linear-gradient(135deg,#7d9f91,#82b2c7);
+  color:#fff;
+  box-shadow:0 12px 28px rgba(77,115,123,.17);
+  transition:.25s ease;
+}
+.curiosity-button.ghost{
+  background:rgba(255,255,255,.5);
+  color:#527276;
+  border:1px solid #bfd1cb;
+  box-shadow:none;
+}
+.curiosity-button:hover{transform:translateY(-3px) rotate(-.4deg)}
+.curiosity-strip{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+  padding:0 6vw 30px;
+}
+.curiosity-card{
+  min-height:180px;
+  padding:20px;
+  border:1px solid #c8d9d3;
+  border-radius:20px;
+  background:
+    linear-gradient(145deg,rgba(255,255,255,.74),rgba(225,237,233,.64));
+  box-shadow:0 18px 38px rgba(61,96,100,.07);
+  transition:transform .2s ease,box-shadow .25s ease,border-color .25s ease;
+  transform-style:preserve-3d;
+}
+.curiosity-card:hover{
+  border-color:#9fbbb3;
+  box-shadow:0 26px 54px rgba(61,96,100,.12);
+}
+.curiosity-card span{
+  display:block;
+  font:500 9px "DM Mono",monospace;
+  color:#7b9490;
+  margin-bottom:40px;
+}
+.curiosity-card strong{font-size:22px;line-height:1.15;display:block;color:#294d53}
+.curiosity-card p{color:#708685;font-size:12px;line-height:1.6}
+.secret-panel{
+  position:fixed;
+  right:28px;
+  top:90px;
+  width:min(420px,calc(100vw - 32px));
+  padding:26px;
+  border:1px solid #aec7c0;
+  border-radius:22px;
+  background:linear-gradient(145deg,rgba(247,251,248,.96),rgba(222,236,232,.95));
+  box-shadow:0 30px 90px rgba(47,78,81,.22);
+  backdrop-filter:blur(18px);
+  z-index:90;
+  transform:translateY(-18px) scale(.96);
+  opacity:0;
+  pointer-events:none;
+  transition:.28s ease;
+}
+.secret-panel.show{transform:none;opacity:1;pointer-events:auto}
+.secret-panel>button{
+  position:absolute;
+  right:16px;top:12px;
+  border:0;background:transparent;color:#56767a;
+  font-size:22px;cursor:pointer;
+}
+.secret-panel h3{font-size:28px;line-height:1.05;margin:15px 0 12px;color:#244a50}
+.secret-panel p{color:#647d7e;line-height:1.65}
+.secret-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:20px}
+.secret-stats div{padding:12px;border-radius:12px;background:rgba(255,255,255,.6);border:1px solid #cadaD5}
+.secret-stats span{display:block;font:500 8px "DM Mono",monospace;color:#78908f;margin-bottom:6px}
+.secret-stats strong{font-size:11px;color:#345a60}
+.cursor-orb{
+  position:fixed;
+  width:180px;height:180px;
+  border-radius:50%;
+  pointer-events:none;
+  background:radial-gradient(circle,rgba(151,196,209,.14),rgba(140,179,161,.08) 40%,transparent 70%);
+  filter:blur(6px);
+  transform:translate(-50%,-50%);
+  z-index:0;
+  opacity:.85;
+}
+.hero,.analytics-section,.split-section,.emergency-section,.intelligence-section,.reviews-section,.final-cta{position:relative;z-index:1}
+.stat-card:nth-child(odd),.achievement:nth-child(even){transform:rotate(-.35deg)}
+.stat-card:nth-child(even),.achievement:nth-child(odd){transform:rotate(.35deg)}
+.stat-card:hover,.achievement:hover{transform:translateY(-6px) rotate(0deg) scale(1.01)}
+.door-console:after{
+  content:"LIVE / WHY?";
+  position:absolute;
+  right:18px;
+  bottom:-12px;
+  padding:6px 8px;
+  border-radius:999px;
+  background:#e5efeb;
+  border:1px solid #bfd1ca;
+  color:#69817f;
+  font:500 8px "DM Mono",monospace;
+}
+.door-console{position:relative}
+@media(max-width:900px){
+  .curiosity-strip{grid-template-columns:1fr}
+  .cursor-orb{display:none}
+}
