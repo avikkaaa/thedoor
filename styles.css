@@ -2082,3 +2082,179 @@ html.grayscale-mode .theme-icon{color:#fff!important}
 @media(max-width:680px){
   .door-type-grid{grid-template-columns:1fr}
 }
+
+
+/* ===== READABILITY / CONTRAST PASS ===== */
+body{color:#fff}
+.hero-sub,
+.section-heading p,
+.sticky-heading p,
+.ai-copy p,
+.final-cta p,
+.emergency-head p{color:#f8edf7}
+
+.door-console,
+.stat-card,
+.performance-panel,
+.achievement,
+.ai-card,
+.review-card,
+.emergency-box,
+.studio-preview-card,
+.secret-panel,
+.confirm-modal,
+.curiosity-card,
+.door-type-card{
+  color:#17152f;
+}
+
+.door-console h2,
+.stat-card h3,
+.performance-panel h3,
+.achievement h3,
+.ai-card h3,
+.review-card h3,
+.emergency-box h3,
+.studio-preview-card h3,
+.secret-panel h3,
+.confirm-modal h3,
+.curiosity-card strong,
+.door-type-card strong{
+  color:#17152f;
+}
+
+.door-console p,
+.stat-card p,
+.performance-panel p,
+.achievement p,
+.ai-card p,
+.review-card p,
+.emergency-box p,
+.studio-preview-card p,
+.secret-panel p,
+.confirm-modal p,
+.curiosity-card p,
+.door-type-card small{
+  color:#5d526d;
+}
+
+.label,
+.card-top,
+.config-title span,
+.preview-meta span,
+.secret-stats span,
+.confirm-summary span,
+.review-breakdown span{
+  color:#6b5f78;
+}
+
+.big-stat,
+.metric,
+.performance-score,
+.preview-meta strong,
+.secret-stats strong,
+.confirm-summary strong,
+.review-breakdown strong,
+.config-title strong{
+  color:#1c1a3e;
+}
+
+.control,
+.chip,
+.incident-grid button,
+.preview-actions button,
+.door-type-card{
+  font-weight:800;
+}
+
+.control.primary,
+.save-config,
+#confirmApply,
+.preview-actions button:first-child,
+.curiosity-button{
+  color:#fff !important;
+}
+
+.curiosity-button.ghost,
+#confirmCancel,
+.status-pill,
+.preview-badge,
+.toast{
+  color:#17215f !important;
+}
+
+.marquee-track,
+footer,
+.nav,
+.brand,
+.theme-icon{
+  color:#fff;
+}
+
+html.grayscale-mode .door-console,
+html.grayscale-mode .stat-card,
+html.grayscale-mode .performance-panel,
+html.grayscale-mode .achievement,
+html.grayscale-mode .ai-card,
+html.grayscale-mode .review-card,
+html.grayscale-mode .emergency-box,
+html.grayscale-mode .studio-preview-card,
+html.grayscale-mode .secret-panel,
+html.grayscale-mode .confirm-modal,
+html.grayscale-mode .curiosity-card,
+html.grayscale-mode .door-type-card{
+  color:#111 !important;
+}
+
+html.grayscale-mode .door-console h2,
+html.grayscale-mode .stat-card h3,
+html.grayscale-mode .performance-panel h3,
+html.grayscale-mode .achievement h3,
+html.grayscale-mode .ai-card h3,
+html.grayscale-mode .review-card h3,
+html.grayscale-mode .emergency-box h3,
+html.grayscale-mode .studio-preview-card h3,
+html.grayscale-mode .secret-panel h3,
+html.grayscale-mode .confirm-modal h3,
+html.grayscale-mode .curiosity-card strong,
+html.grayscale-mode .door-type-card strong,
+html.grayscale-mode .big-stat,
+html.grayscale-mode .metric,
+html.grayscale-mode .performance-score,
+html.grayscale-mode .preview-meta strong,
+html.grayscale-mode .secret-stats strong,
+html.grayscale-mode .confirm-summary strong,
+html.grayscale-mode .review-breakdown strong,
+html.grayscale-mode .config-title strong{
+  color:#111 !important;
+}
+
+html.grayscale-mode .door-console p,
+html.grayscale-mode .stat-card p,
+html.grayscale-mode .performance-panel p,
+html.grayscale-mode .achievement p,
+html.grayscale-mode .ai-card p,
+html.grayscale-mode .review-card p,
+html.grayscale-mode .emergency-box p,
+html.grayscale-mode .studio-preview-card p,
+html.grayscale-mode .secret-panel p,
+html.grayscale-mode .confirm-modal p,
+html.grayscale-mode .curiosity-card p,
+html.grayscale-mode .door-type-card small,
+html.grayscale-mode .label,
+html.grayscale-mode .card-top,
+html.grayscale-mode .config-title span,
+html.grayscale-mode .preview-meta span,
+html.grayscale-mode .secret-stats span,
+html.grayscale-mode .confirm-summary span,
+html.grayscale-mode .review-breakdown span{
+  color:#4a4a4a !important;
+}
+
+html.grayscale-mode .hero-sub,
+html.grayscale-mode .section-heading p,
+html.grayscale-mode .sticky-heading p,
+html.grayscale-mode .ai-copy p,
+html.grayscale-mode .final-cta p{
+  color:#e2e2e2 !important;
+}
