@@ -116,7 +116,41 @@ document.addEventListener('DOMContentLoaded', () => {
     return 'wood';
   };
 
-  const playDoorSound = (action, material = getCurrentMaterial()) => {
+  const realDoorSounds = {
+    open: 'https://orangefreesounds.com/wp-content/uploads/2025/01/Opening-a-door-sound-effect.mp3',
+    close: 'https://www.orangefreesounds.com/wp-content/uploads/2015/04/Door-closing-sound-effect.mp3',
+    lock: 'https://orangefreesounds.com/wp-content/uploads/2022/10/Lock-sound-effect.mp3',
+    unlock: 'https://orangefreesounds.com/wp-content/uploads/2025/07/Door-lock-or-unlock-with-key-sound-effect.mp3'
+  };
+
+  const realAudio = Object.fromEntries(
+    Object.entries(realDoorSounds).map(([action, src]) => {
+      const audio = new Audio(src);
+      audio.preload = 'auto';
+      audio.volume = action === 'close' ? 0.72 : 0.62;
+      return [action, audio];
+    })
+  );
+
+  const playRecordedDoorSound = async (action) => {
+    const audio = realAudio[action];
+    if (!audio) return false;
+
+    try {
+      audio.pause();
+      audio.currentTime = 0;
+      await audio.play();
+      return true;
+    } catch (error) {
+      console.warn('Recorded door sound could not play; using generated fallback.', error);
+      return false;
+    }
+  };
+
+  const playDoorSound = async (action, material = getCurrentMaterial()) => {
+    const playedRecordedSound = await playRecordedDoorSound(action);
+    if (playedRecordedSound) return;
+
     const ctx = getAudioContext();
     if (ctx && ctx.state === 'suspended') ctx.resume();
 
