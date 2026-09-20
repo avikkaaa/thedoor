@@ -28,7 +28,64 @@ document.addEventListener('DOMContentLoaded', () => {
     return audioContext;
   };
 
-  const playTone = ({ start = 220, end = 180, duration = .12, type = 'sine', gain = .05, delay = 0 }) => {
+  const createNoiseBuffer = (ctx, seconds = .25) => {
+    const length = Math.max(1, Math.floor(ctx.sampleRate * seconds));
+    const buffer = ctx.createBuffer(1, length, ctx.sampleRate);
+    const data = buffer.getChannelData(0);
+
+    for (let i = 0; i < length; i += 1) {
+      const fade = 1 - i / length;
+      data[i] = (Math.random() * 2 - 1) * fade;
+    }
+
+    return buffer;
+  };
+
+  const playNoise = ({
+    duration = .18,
+    gain = .025,
+    lowpass = 1500,
+    highpass = 60,
+    delay = 0
+  } = {}) => {
+    const ctx = getAudioContext();
+    if (!ctx) return;
+
+    const source = ctx.createBufferSource();
+    source.buffer = createNoiseBuffer(ctx, duration);
+
+    const hp = ctx.createBiquadFilter();
+    hp.type = 'highpass';
+    hp.frequency.value = highpass;
+
+    const lp = ctx.createBiquadFilter();
+    lp.type = 'lowpass';
+    lp.frequency.value = lowpass;
+
+    const amp = ctx.createGain();
+    const now = ctx.currentTime + delay;
+
+    amp.gain.setValueAtTime(.0001, now);
+    amp.gain.exponentialRampToValueAtTime(gain, now + .012);
+    amp.gain.exponentialRampToValueAtTime(.0001, now + duration);
+
+    source.connect(hp);
+    hp.connect(lp);
+    lp.connect(amp);
+    amp.connect(ctx.destination);
+
+    source.start(now);
+    source.stop(now + duration + .02);
+  };
+
+  const playTone = ({
+    start = 220,
+    end = 180,
+    duration = .12,
+    type = 'sine',
+    gain = .05,
+    delay = 0
+  }) => {
     const ctx = getAudioContext();
     if (!ctx) return;
 
@@ -37,11 +94,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const now = ctx.currentTime + delay;
 
     osc.type = type;
-    osc.frequency.setValueAtTime(start, now);
+    osc.frequency.setValueAtTime(Math.max(1, start), now);
     osc.frequency.exponentialRampToValueAtTime(Math.max(1, end), now + duration);
 
     amp.gain.setValueAtTime(.0001, now);
-    amp.gain.exponentialRampToValueAtTime(gain, now + .01);
+    amp.gain.exponentialRampToValueAtTime(gain, now + .008);
     amp.gain.exponentialRampToValueAtTime(.0001, now + duration);
 
     osc.connect(amp);
@@ -55,23 +112,36 @@ document.addEventListener('DOMContentLoaded', () => {
     if (ctx && ctx.state === 'suspended') ctx.resume();
 
     if (action === 'open') {
-      playTone({ start: 180, end: 110, duration: .22, type: 'triangle', gain: .035 });
-      playTone({ start: 520, end: 420, duration: .06, type: 'sine', gain: .018, delay: .03 });
+      // Soft latch release + wood/hinge creak
+      playTone({ start: 190, end: 145, duration: .045, type: 'square', gain: .012 });
+      playNoise({ duration: .42, gain: .028, lowpass: 900, highpass: 90, delay: .035 });
+      playTone({ start: 115, end: 72, duration: .34, type: 'sawtooth', gain: .016, delay: .05 });
+      playTone({ start: 410, end: 330, duration: .08, type: 'triangle', gain: .008, delay: .11 });
     }
 
     if (action === 'close') {
-      playTone({ start: 130, end: 72, duration: .16, type: 'triangle', gain: .055 });
-      playTone({ start: 72, end: 48, duration: .08, type: 'square', gain: .018, delay: .12 });
+      // Closing movement + latch catch + body thud
+      playNoise({ duration: .22, gain: .022, lowpass: 1000, highpass: 80 });
+      playTone({ start: 105, end: 64, duration: .15, type: 'sawtooth', gain: .018, delay: .015 });
+      playTone({ start: 72, end: 45, duration: .09, type: 'triangle', gain: .05, delay: .16 });
+      playTone({ start: 520, end: 360, duration: .055, type: 'square', gain: .014, delay: .18 });
+      playNoise({ duration: .07, gain: .018, lowpass: 650, highpass: 40, delay: .155 });
     }
 
     if (action === 'lock') {
-      playTone({ start: 760, end: 520, duration: .055, type: 'square', gain: .025 });
-      playTone({ start: 420, end: 330, duration: .07, type: 'square', gain: .022, delay: .07 });
+      // Two-stage metallic deadbolt click
+      playTone({ start: 880, end: 620, duration: .035, type: 'square', gain: .018 });
+      playTone({ start: 540, end: 430, duration: .055, type: 'triangle', gain: .022, delay: .05 });
+      playNoise({ duration: .055, gain: .012, lowpass: 2200, highpass: 500, delay: .045 });
+      playTone({ start: 300, end: 250, duration: .06, type: 'square', gain: .012, delay: .095 });
     }
 
     if (action === 'unlock') {
-      playTone({ start: 330, end: 520, duration: .07, type: 'square', gain: .022 });
-      playTone({ start: 520, end: 760, duration: .055, type: 'square', gain: .025, delay: .07 });
+      // Reverse metallic action
+      playTone({ start: 300, end: 410, duration: .05, type: 'square', gain: .012 });
+      playNoise({ duration: .05, gain: .01, lowpass: 2400, highpass: 600, delay: .035 });
+      playTone({ start: 520, end: 760, duration: .045, type: 'triangle', gain: .019, delay: .055 });
+      playTone({ start: 760, end: 920, duration: .03, type: 'square', gain: .013, delay: .1 });
     }
   };
 
