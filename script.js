@@ -116,6 +116,28 @@ document.addEventListener('DOMContentLoaded', () => {
     return 'wood';
   };
 
+  const getCurrentDoorType = () => {
+    if (door.classList.contains('type-front')) return 'front';
+    if (door.classList.contains('type-office')) return 'office';
+    if (door.classList.contains('type-bathroom')) return 'bathroom';
+    if (door.classList.contains('type-vault')) return 'vault';
+    if (door.classList.contains('type-secret')) return 'secret';
+    if (door.classList.contains('type-spaceship')) return 'spaceship';
+    if (door.classList.contains('type-medieval')) return 'medieval';
+    return 'bedroom';
+  };
+
+  const doorTypeSoundProfile = {
+    bedroom:   { rate:.96, volume:.58, accent:'soft' },
+    front:     { rate:.86, volume:.78, accent:'heavy' },
+    office:    { rate:1.08, volume:.58, accent:'clean' },
+    bathroom:  { rate:1.18, volume:.50, accent:'light' },
+    vault:     { rate:.72, volume:.92, accent:'vault' },
+    secret:    { rate:.82, volume:.52, accent:'creaky' },
+    spaceship: { rate:1.32, volume:.58, accent:'sci-fi' },
+    medieval:  { rate:.68, volume:.86, accent:'ancient' }
+  };
+
   const realDoorSounds = {
     open: 'https://orangefreesounds.com/wp-content/uploads/2025/01/Opening-a-door-sound-effect.mp3',
     close: 'https://www.orangefreesounds.com/wp-content/uploads/2015/04/Door-closing-sound-effect.mp3',
@@ -132,13 +154,17 @@ document.addEventListener('DOMContentLoaded', () => {
     })
   );
 
-  const playRecordedDoorSound = async (action) => {
+  const playRecordedDoorSound = async (action, doorType = getCurrentDoorType()) => {
     const audio = realAudio[action];
     if (!audio) return false;
+
+    const profile = doorTypeSoundProfile[doorType] || doorTypeSoundProfile.bedroom;
 
     try {
       audio.pause();
       audio.currentTime = 0;
+      audio.playbackRate = profile.rate;
+      audio.volume = Math.min(1, profile.volume + (action === 'close' ? .06 : 0));
       await audio.play();
       return true;
     } catch (error) {
@@ -147,12 +173,49 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
+  const playDoorTypeAccent = (action, doorType = getCurrentDoorType()) => {
+    const profile = doorTypeSoundProfile[doorType] || doorTypeSoundProfile.bedroom;
+
+    if (profile.accent === 'vault') {
+      playTone({ start: action === 'unlock' ? 180 : 110, end: action === 'unlock' ? 320 : 70, duration:.22, type:'square', gain:.022, delay:.04 });
+      playNoise({ duration:.11, gain:.018, lowpass:700, highpass:45, delay:.08 });
+    }
+
+    if (profile.accent === 'sci-fi') {
+      playTone({ start: action === 'close' || action === 'lock' ? 760 : 340, end: action === 'close' || action === 'lock' ? 280 : 920, duration:.18, type:'sine', gain:.014, delay:.03 });
+    }
+
+    if (profile.accent === 'ancient') {
+      playNoise({ duration:.36, gain:.018, lowpass:820, highpass:55, delay:.02 });
+      playTone({ start:125, end:62, duration:.34, type:'sawtooth', gain:.012, delay:.04 });
+    }
+
+    if (profile.accent === 'creaky') {
+      playTone({ start:165, end:82, duration:.28, type:'sawtooth', gain:.010, delay:.05 });
+    }
+
+    if (profile.accent === 'heavy' && (action === 'close' || action === 'lock')) {
+      playNoise({ duration:.09, gain:.022, lowpass:520, highpass:35, delay:.12 });
+    }
+
+    if (profile.accent === 'clean' && (action === 'lock' || action === 'unlock')) {
+      playTone({ start: action === 'lock' ? 720 : 440, end: action === 'lock' ? 420 : 760, duration:.05, type:'triangle', gain:.010, delay:.03 });
+    }
+
+    if (profile.accent === 'light' && (action === 'open' || action === 'close')) {
+      playTone({ start:520, end:350, duration:.06, type:'triangle', gain:.006, delay:.05 });
+    }
+  };
+
   const playDoorSound = async (action, material = getCurrentMaterial()) => {
-    const playedRecordedSound = await playRecordedDoorSound(action);
-    if (playedRecordedSound) return;
+    const doorType = getCurrentDoorType();
+    const playedRecordedSound = await playRecordedDoorSound(action, doorType);
 
     const ctx = getAudioContext();
     if (ctx && ctx.state === 'suspended') ctx.resume();
+
+    playDoorTypeAccent(action, doorType);
+    if (playedRecordedSound) return;
 
     const materialProfile = {
       wood:       { creak:.032, movement:.020, latch:.016, metal:.010, pitch:1.00 },
