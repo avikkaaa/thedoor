@@ -575,14 +575,17 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  bind('themeButton', () => {
-    document.documentElement.classList.toggle('light');
-    showToast(
-      document.documentElement.classList.contains('light')
-        ? 'Light interface enabled. The door remains unchanged.'
-        : 'Dark interface restored. Serious door operations may resume.'
-    );
-  });
+  const themeToggle = $('themeButton');
+  if (themeToggle) {
+    themeToggle.addEventListener('change', () => {
+      document.documentElement.classList.toggle('grayscale-mode', themeToggle.checked);
+      showToast(
+        themeToggle.checked
+          ? 'Grayscale mode enabled. The door is now dramatically serious.'
+          : 'Color mode restored. The door has regained its personality.'
+      );
+    });
+  }
 
   door.classList.add('material-wood','handle-modern');
   if (customDoor) customDoor.classList.add('material-wood','handle-modern');
