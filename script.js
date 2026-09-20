@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let count = Number(openCount.textContent) || 17;
   let toastTimer;
   let audioContext;
+  let selectedSoundProfile = 'soft click';
 
   const getAudioContext = () => {
     if (!audioContext) {
@@ -208,11 +209,68 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   const playDoorSound = async (action, material = getCurrentMaterial()) => {
-    const doorType = getCurrentDoorType();
-    const playedRecordedSound = await playRecordedDoorSound(action, doorType);
+    if (selectedSoundProfile === 'silent') return;
 
+    const doorType = getCurrentDoorType();
     const ctx = getAudioContext();
     if (ctx && ctx.state === 'suspended') ctx.resume();
+
+    if (selectedSoundProfile === 'classic creak') {
+      playNoise({ duration:.38, gain:.026, lowpass:900, highpass:70 });
+      playTone({ start:150, end:72, duration:.42, type:'sawtooth', gain:.018, delay:.035 });
+      if (action === 'close') {
+        playNoise({ duration:.08, gain:.025, lowpass:560, highpass:40, delay:.18 });
+      }
+      return;
+    }
+
+    if (selectedSoundProfile === 'heavy thud') {
+      if (action === 'open') {
+        playTone({ start:180, end:95, duration:.18, type:'triangle', gain:.018 });
+        playNoise({ duration:.20, gain:.024, lowpass:700, highpass:45, delay:.03 });
+      } else if (action === 'close') {
+        playNoise({ duration:.10, gain:.045, lowpass:500, highpass:30 });
+        playTone({ start:95, end:45, duration:.12, type:'triangle', gain:.038, delay:.02 });
+      } else if (action === 'lock') {
+        playTone({ start:520, end:240, duration:.08, type:'square', gain:.028 });
+        playNoise({ duration:.05, gain:.018, lowpass:1800, highpass:500, delay:.04 });
+      } else if (action === 'unlock') {
+        playTone({ start:260, end:520, duration:.08, type:'square', gain:.022 });
+      }
+      return;
+    }
+
+    if (selectedSoundProfile === 'sci-fi') {
+      if (action === 'open') {
+        playTone({ start:320, end:920, duration:.24, type:'sine', gain:.016 });
+        playTone({ start:140, end:240, duration:.20, type:'triangle', gain:.010, delay:.02 });
+      } else if (action === 'close') {
+        playTone({ start:900, end:260, duration:.22, type:'sine', gain:.016 });
+      } else if (action === 'lock') {
+        playTone({ start:760, end:420, duration:.08, type:'square', gain:.016 });
+        playTone({ start:420, end:250, duration:.06, type:'triangle', gain:.012, delay:.07 });
+      } else if (action === 'unlock') {
+        playTone({ start:280, end:760, duration:.11, type:'sine', gain:.015 });
+      }
+      return;
+    }
+
+    if (selectedSoundProfile === 'soft click') {
+      if (action === 'open') {
+        playTone({ start:520, end:390, duration:.045, type:'triangle', gain:.010 });
+        playNoise({ duration:.08, gain:.008, lowpass:2200, highpass:700, delay:.02 });
+      } else if (action === 'close') {
+        playTone({ start:430, end:300, duration:.045, type:'triangle', gain:.011 });
+        playNoise({ duration:.06, gain:.009, lowpass:1800, highpass:500, delay:.02 });
+      } else if (action === 'lock') {
+        playTone({ start:640, end:410, duration:.04, type:'square', gain:.012 });
+      } else if (action === 'unlock') {
+        playTone({ start:390, end:640, duration:.04, type:'triangle', gain:.011 });
+      }
+      return;
+    }
+
+    const playedRecordedSound = await playRecordedDoorSound(action, doorType);
 
     playDoorTypeAccent(action, doorType);
     if (playedRecordedSound) return;
@@ -429,6 +487,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (groupName === 'sound') {
+      selectedSoundProfile = normalized;
       const soundCopy = {
         'classic creak': 'Classic creak selected. Historical authenticity increased by 38%.',
         'soft click': 'Soft click selected. Very tasteful. Very door.',
@@ -437,6 +496,7 @@ document.addEventListener('DOMContentLoaded', () => {
         'silent': 'Silent mode selected. The door will now open mysteriously.'
       };
       note.textContent = soundCopy[normalized] || 'Door sound profile updated.';
+      if (normalized !== 'silent') playDoorSound('open', getCurrentMaterial());
     }
   };
 
