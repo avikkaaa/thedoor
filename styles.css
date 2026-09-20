@@ -1275,3 +1275,64 @@ footer{
   border-top:2px solid #5a00d6;
   background:rgba(255,244,168,.8);
 }
+
+
+/* ===== PURPLE-DOMINANT BACKGROUND ===== */
+body{
+  background:
+    radial-gradient(circle at 12% 10%,rgba(145,74,255,.35),transparent 22%),
+    radial-gradient(circle at 88% 12%,rgba(255,212,0,.16),transparent 20%),
+    linear-gradient(180deg,#3b0d74 0%,#5a00d6 32%,#6f2cff 62%,#4b00b3 100%);
+  color:#fff7d1;
+}
+.topbar{
+  background:rgba(49,9,104,.82);
+  border-bottom:2px solid rgba(255,212,0,.22);
+}
+.hero:before{background:radial-gradient(circle,rgba(255,212,0,.18),transparent 70%)}
+.analytics-section,
+.intelligence-section,
+.emergency-section,
+.reviews-section,
+.final-cta{
+  background:
+    radial-gradient(circle at 10% 18%,rgba(255,212,0,.10),transparent 24%),
+    linear-gradient(180deg,#4a009e 0%,#6721dc 48%,#4b00b3 100%);
+}
+.hero-sub,
+.stat-card p,
+.performance-copy p,
+.sticky-heading p,
+.ai-copy p,
+.achievement p,
+.review-breakdown div,
+.system-note,
+.final-cta p{color:#efe3ff}
+.section-heading h2,
+.emergency-head h2,
+.ai-copy h2,
+.final-cta h2,
+.hero h1{color:#fff8d9}
+.section-heading h2 span,
+.emergency-head h2 span,
+.ai-copy h2 span,
+.final-cta h2 span,
+.hero h1 em{color:#ffd400}
+.door-console,
+.stat-card,
+.achievement,
+.ai-card,
+.performance-panel,
+.review-card,
+.emergency-box,
+.studio-preview-card,
+.secret-panel,
+.confirm-modal{
+  background:rgba(255,255,255,.08);
+  backdrop-filter:blur(12px);
+}
+.preview-meta div,
+.secret-stats div,
+.confirm-summary,
+.door-readout div{background:rgba(255,255,255,.10)}
+footer{background:rgba(39,0,92,.65)}
