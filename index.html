@@ -136,7 +136,38 @@
         <p>Configure a digital door with a level of precision previously reserved for spacecraft and espresso machines.</p>
       </div>
 
-      <div class="config-panel">
+      <div class="studio-workspace">
+        <div class="studio-preview-card">
+          <div class="preview-head">
+            <div>
+              <span class="label">LIVE PREVIEW</span>
+              <h3>Door Configuration</h3>
+            </div>
+            <span class="preview-badge">SYNCED</span>
+          </div>
+          <div class="studio-door-stage">
+            <div class="preview-grid"></div>
+            <div class="door-frame studio-door-frame">
+              <div class="door material-wood handle-modern" id="customDoorVisual">
+                <div class="door-panel door-panel-top"></div>
+                <div class="door-panel door-panel-bottom"></div>
+                <div class="door-handle"></div>
+              </div>
+            </div>
+            <div class="studio-door-shadow"></div>
+          </div>
+          <div class="preview-meta">
+            <div><span>MATERIAL</span><strong id="previewMaterial">WOOD</strong></div>
+            <div><span>HANDLE</span><strong id="previewHandle">MODERN</strong></div>
+            <div><span>SPEED</span><strong id="previewSpeed">64%</strong></div>
+          </div>
+          <div class="preview-actions">
+            <button id="previewOpen">OPEN PREVIEW</button>
+            <button id="previewClose">CLOSE</button>
+          </div>
+        </div>
+
+        <div class="config-panel">
         <div class="config-block">
           <div class="config-title"><span>MATERIAL</span><strong id="materialValue">WOOD</strong></div>
           <div class="chips" data-group="material">
@@ -161,6 +192,7 @@
           <div class="range-labels"><span>🐌 EXTREMELY SLOW</span><span>⚡ RIDICULOUSLY FAST</span></div>
         </div>
         <button class="save-config" id="saveConfig">SAVE PERFECT DOOR <span>→</span></button>
+        </div>
       </div>
     </section>
 
